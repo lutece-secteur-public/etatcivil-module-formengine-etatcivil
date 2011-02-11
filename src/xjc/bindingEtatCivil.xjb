@@ -1,0 +1,16 @@
+<jxb:bindings version="1.0"
+               xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+               xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <jxb:bindings schemaLocation="etatcivil.xsd" node="/xs:schema">
+    
+
+<jxb:globalBindings typesafeEnumBase="xs:string">
+    <jxb:javaType name="java.sql.Date" xmlType="xs:date" printMethod="toString" parseMethod="valueOf"/>
+    <jxb:javaType name="java.util.Calendar" xmlType="xs:dateTime" parseMethod="javax.xml.bind.DatatypeConverter.parseDateTime" printMethod="javax.xml.bind.DatatypeConverter.printDateTime"/>
+    
+    
+</jxb:globalBindings>
+
+</jxb:bindings>
+
+</jxb:bindings>

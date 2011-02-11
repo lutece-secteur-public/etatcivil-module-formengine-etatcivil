@@ -1,0 +1,410 @@
+<?xml version="1.0"?>
+<formDefinition name="reconnaissance"
+    className="fr.paris.lutece.plugins.formengine.modules.etatcivil.web.EtatCivilForm">
+    <title>Demande d'acte de reconnaissance - Service en ligne de la Ville de Paris</title>
+    <subForms>
+        <subFormDefinition name="lieuEtDate"
+            className="fr.paris.lutece.plugins.formengine.modules.etatcivil.web.LieuDateActeSubForm">
+            <title>Lieu et date de reconnaissance</title>
+            <formElements>
+                    <fields>
+                     <field type="combo" name="mairieActe">
+                      <label>Mairie d'arrondissement</label>
+                      <value/>
+                      <choiceList>
+                       <choice value="" label="Choisir une mairie" />
+                       <choice value="Paris 1er" label="Paris 1er"/>
+                       <choice value="Paris 2ème" label="Paris 2ème"/>
+                       <choice value="Paris 3ème" label="Paris 3ème"/>
+                       <choice value="Paris 4ème" label="Paris 4ème"/>
+                       <choice value="Paris 5ème" label="Paris 5ème"/>
+                       <choice value="Paris 6ème" label="Paris 6ème"/>
+                       <choice value="Paris 7ème" label="Paris 7ème"/>
+                       <choice value="Paris 8ème" label="Paris 8ème"/>
+                       <choice value="Paris 9ème" label="Paris 9ème"/>
+                       <choice value="Paris 10ème" label="Paris 10ème"/>
+                       <choice value="Paris 11ème" label="Paris 11ème"/>
+                       <choice value="Paris 12ème" label="Paris 12ème"/>
+                       <choice value="Paris 13ème" label="Paris 13ème"/>
+                       <choice value="Paris 14ème" label="Paris 14ème"/>
+                       <choice value="Paris 15ème" label="Paris 15ème"/>
+                       <choice value="Paris 16ème" label="Paris 16ème"/>
+                       <choice value="Paris 17ème" label="Paris 17ème"/>
+                       <choice value="Paris 18ème" label="Paris 18ème"/>
+                       <choice value="Paris 19ème" label="Paris 19ème"/>
+                       <choice value="Paris 20ème" label="Paris 20ème"/>
+                       <choice value="UNKNOWN" label="Ne sait pas"/>
+                      </choiceList>
+                      <checkFieldRules>
+                       <checkRule type="fieldRequired" parameter="true"/>
+                      </checkFieldRules>
+                     </field>
+                     <field type="text" name="dateActeJour">
+                      <label>Si la date de reconnaissance est connue</label>
+                      <value/>
+                      <additionalInfo>Date au format jj/mm/aaaa ou aaaa, ex : 24/12/2005 ou 2005</additionalInfo>
+                      <checkFieldRules>
+                      </checkFieldRules>
+                     </field>
+                     <field type="text" name="dateActeMois">
+                      <label>mois</label>
+                      <value/>
+                      <additionalInfo></additionalInfo>
+                      <checkFieldRules>
+                      </checkFieldRules>
+                     </field>
+                     <field type="text" name="dateActeAnnee">
+                      <label>année</label>
+                      <value/>
+                      <additionalInfo></additionalInfo>
+                      <checkFieldRules>
+                      </checkFieldRules>
+                     </field>
+                   <field type="combo" name="fourchetteDateActe">
+ <label>Sinon année</label>
+      <value/>
+      <choiceList>
+     	<choice  value="" label="Sélectionner une plage d'années"/>
+     	<choice  value="1903 - 1912" label="1903 - 1912"/>
+     	<choice  value="1913 - 1922" label="1913 - 1922"/>
+	<choice  value="1923 - 1932" label="1923 - 1932"/>
+	<choice  value="1933 - 1942" label="1933 - 1942"/>
+	<choice  value="1943 - 1952" label="1943 - 1952"/>
+	<choice  value="1953 - 1954" label="1953 - 1954"/>
+	<choice  value="1955 - 1964" label="1955 - 1964"/>
+	<choice  value="1965 - 1974" label="1965 - 1974"/>
+	<choice  value="1975 - 1984" label="1975 - 1984"/>
+	<choice  value="1985 - 1994" label="1985 - 1994"/>
+	<choice  value="1995 - 2004" label="1995 - 2004"/>
+	<choice  value="2005 - 2007" label="2005 - 2007"/>
+      </choiceList>
+</field>
+                    <field type="radio" name="momentReconnaissance">
+                        <label>La reconnaissance a eu lieu</label>
+                        <value/>
+                        <choiceList>
+                            <choice label="Avant la naissance" value="0"/>
+                            <choice label="Après la naissance" value="1"/>
+                        </choiceList>
+                        <checkFieldRules>
+                            <checkRule type="fieldRequired" parameter="true"/>
+                        </checkFieldRules>
+                    </field>
+                </fields>
+                <buttons>
+                    <button name="Etape suivante" type="submit"/>
+                </buttons>
+                <checkSubFormRules>
+                    <checkRule type="specific"
+                        parameter="fr.paris.lutece.plugins.formengine.modules.etatcivil.service.validator.ValidatorDateActeRequired"
+                    />
+                </checkSubFormRules>
+            </formElements>
+        </subFormDefinition>
+        <subFormDefinition name="identiteReconnaissance"
+            className="fr.paris.lutece.plugins.formengine.modules.etatcivil.web.ReconnaissanceIdentiteSubForm">
+            <title>Etat civil de la personne dont vous demandez l'acte </title>
+            <formElements>
+                <fields>
+                    <field type="text" name="nomPere">
+                        <label>Nom du père</label>
+                        <value/>
+                        <checkFieldRules>
+                          <checkRule type="maxLength" parameter="200"/>
+                          <checkRule type="xss"/>
+                        </checkFieldRules>
+                    </field>
+                    <field type="text" name="prenomPere">
+                        <label>Prénom du père</label>
+                        <value/>
+                        <checkFieldRules>
+                         <checkRule type="maxLength" parameter="200"/>
+                         <checkRule type="xss"/>
+                        </checkFieldRules>
+                    </field>
+                    <field type="text" name="nomMere">
+                        <label>Nom de la mère</label>
+                        <value/>
+                        <additionalInfo>Nom de jeune fille pour une femme mariée</additionalInfo>
+                        <checkFieldRules>
+                         <checkRule type="maxLength" parameter="200"/>
+                         <checkRule type="xss"/>
+                        </checkFieldRules>
+                    </field>
+                    <field type="text" name="prenomMere">
+                        <label>Prénom de la mère</label>
+                        <value/>
+                        <checkFieldRules>
+                         <checkRule type="maxLength" parameter="200"/>
+                         <checkRule type="xss"/>
+                        </checkFieldRules>
+                    </field>
+                    <field type="text" name="nom">
+                        <label>Nom</label>
+                        <value/>
+                        <checkFieldRules>
+                         <checkRule type="maxLength" parameter="200"/>
+                         <checkRule type="xss"/>
+                        </checkFieldRules>
+                    </field>
+                    <field type="text" name="prenom">
+                        <label>Prénom</label>
+                        <value/>
+                        <checkFieldRules>
+                         <checkRule type="maxLength" parameter="200"/>
+                         <checkRule type="xss"/>
+                        </checkFieldRules>
+                    </field>
+                    <field type="combo" name="nombreActes">
+                        <label>Nombre d'actes demandés</label>
+                        <value></value>
+                        <choiceList>
+                            <choice label="1" value="1"/>
+                            <choice label="2" value="2"/>
+                            <choice label="3" value="3"/>
+                        </choiceList>
+                        <checkFieldRules>
+                            <checkRule type="fieldRequired" parameter="true"/>
+                            <checkRule type="fieldNumeric" min="1" max="3"/>
+                        </checkFieldRules>
+                    </field>
+                </fields>
+                <buttons>
+                    <button name="Etape précédente" type="submit"/>
+                    <button name="Etape suivante" type="submit"/>
+                </buttons>
+                <checkSubFormRules>
+                    <checkRule type="specific"
+                        parameter="fr.paris.lutece.plugins.formengine.modules.etatcivil.service.validator.ValidatorReconnaissance"
+                    />
+                </checkSubFormRules>
+                 <notices>
+                     <noticeGroup name="remarqueIdentiteParent">
+                            <notice>
+                                Le nom et le prénom du père OU de la mère doivent être spécifiés.
+                            </notice>
+                       </noticeGroup>
+                     <noticeGroup name="conditionsDelivrance">
+                            <notice>
+				Les actes de reconnaissance ne se délivrent que sous la forme de copie intégrale.
+				Ils peuvent être délivrées uniquement à la personne reconnue dans l'acte de 
+				reconnaissance, ses ascendants, ses descendants, son conjoint ou son représentant 
+				légal (décret n° 97-852 du 16 septembre 1997) .
+                            </notice>
+                       </noticeGroup>
+
+                 </notices>
+            </formElements>
+        </subFormDefinition>
+        <subFormDefinition name="coordonnees"
+            className="fr.paris.lutece.plugins.formengine.modules.etatcivil.web.CoordonneesSubForm">
+            <title>Coordonnées du demandeur</title>
+            <formElements>
+                <fields>
+                    <field type="radio" name="civilite">
+                        <label>Civilité</label>
+                        <value/>
+                        <choiceList>
+                            <choice label="Monsieur" value="Mr"/>
+                            <choice label="Madame" value="Mme"/>
+                            <choice label="Mademoiselle" value="Mlle"/>
+                        </choiceList>
+                        <checkFieldRules>
+                            <checkRule type="fieldRequired" parameter="true"/>
+                        </checkFieldRules>
+                    </field>
+                    <field type="text" name="nom">
+                        <label>Nom</label>
+                        <value/>
+                        <checkFieldRules>
+                            <checkRule type="fieldRequired" parameter="true"/>
+                            <checkRule type="maxLength" parameter="200"/>
+                            <checkRule type="xss"/>
+                        </checkFieldRules>
+                    </field>
+                    <field type="text" name="prenom">
+                        <label>Prénom</label>
+                        <value/>
+                        <checkFieldRules>
+                            <checkRule type="fieldRequired" parameter="true"/>
+                            <checkRule type="maxLength" parameter="200"/>
+                            <checkRule type="xss"/>
+                        </checkFieldRules>
+                    </field>
+                    <field type="text" name="adresse">
+                        <label>Adresse</label>
+                        <value/>
+                        <checkFieldRules>
+                            <checkRule type="fieldRequired" parameter="true"/>
+                            <checkRule type="maxLength" parameter="200"/>
+                            <checkRule type="xss"/>
+                        </checkFieldRules>
+                    </field>
+                    <field type="text" name="codePostal">
+                        <label>Code postal</label>
+                        <value/>
+                        <checkFieldRules>
+                            <checkRule type="fieldRequired" parameter="true"/>
+                            <checkRule type="maxLength" parameter="10"/>
+                            <checkRule type="xss"/>
+                        </checkFieldRules>
+                    </field>
+                    <field type="text" name="ville">
+                        <label>Ville</label>
+                        <value/>
+                        <checkFieldRules>
+                            <checkRule type="fieldRequired" parameter="true"/>
+                            <checkRule type="maxLength" parameter="200"/>
+                            <checkRule type="xss"/>
+                        </checkFieldRules>
+                    </field>
+		    <field type="text" name="pays">
+			<label>Pays</label>
+			<value/>
+		        <checkFieldRules>
+			       <checkRule type="maxLength" parameter="200"/>
+			       <checkRule type="xss"/>
+			</checkFieldRules>
+		     </field>
+		     <field type="text" name="province">
+			<label>Province</label>
+			<value/>
+			<checkFieldRules>
+			       <checkRule type="maxLength" parameter="200"/>
+			       <checkRule type="xss"/>
+			</checkFieldRules>
+		     </field>
+                </fields>
+                <buttons>
+                    <button name="Etape précédente" type="submit"/>
+                    <button name="Etape suivante" type="submit"/>
+                </buttons>
+            </formElements>
+        </subFormDefinition>
+        <subFormDefinition name="infosComplementaires"
+            className="fr.paris.lutece.plugins.formengine.modules.etatcivil.web.InfosComplementairesSubForm">
+            <title>Informations complémentaires</title>
+            <formElements>
+                <fields>
+                    <field type="text" name="numTelephone">
+                        <label>Téléphone</label>
+                        <value/>
+                        <checkFieldRules>
+                          <checkRule type="maxLength" parameter="20"/>
+		          <checkRule type="xss"/>
+                        </checkFieldRules>
+                    </field>
+                    <field type="text" name="email">
+                        <label>Adresse mèl</label>
+                        <value/>
+                        <additionalInfo>Au format xxx@yyy.zzz</additionalInfo>
+                        <checkFieldRules>
+                            <checkRule type="email"/>
+  		            <checkRule type="xss"/>
+                        </checkFieldRules>
+                    </field>
+                    <field type="combo" name="typeDemandeur">
+                        <label>Vous êtes</label>
+                        <value/>
+                        <choiceList>
+                            <choice label="" value=""/>
+                            <choice label="la personne reconnue" value="personne reconnue dans acte"/>
+                            <choice label="le conjoint de la personne reconnue" value="conjoint"/>
+                            <choice label="les ascendants ou descendants" value="ascendants ou descendants"/>
+                            <choice label="autres" value="autres"/>
+                        </choiceList>
+                        <checkFieldRules>
+                            <checkRule type="fieldRequired" parameter="true"/>
+                        </checkFieldRules>
+                    </field>
+                    <field type="combo" name="motifDemande">
+                        <label>Motif de la demande</label>
+                        <value/>
+                        <choiceList>
+                            <choice label="" value=""/>
+                            <choice label="généalogie" value="généalogie"/>
+                            <choice label="autres" value="autres"/>
+                        </choiceList>
+                        <checkFieldRules>
+                            <checkRule type="fieldRequired" parameter="true"/>
+                        </checkFieldRules>
+                    </field>
+                </fields>
+                <buttons>
+                    <button name="Etape précédente" type="submit"/>
+                    <button name="Etape suivante" type="submit"/>
+                </buttons>
+                
+                     <notices>
+                            <noticeGroup name="remarqueEmail">
+                                <notice>
+                                   Si vous indiquez votre adresse mèl, vous recevrez un accusé de réception de la demande.
+                                </notice>
+                            </noticeGroup>
+                            
+                        
+                        </notices>
+            </formElements>
+        </subFormDefinition>
+        <subFormDefinition name="recapitulatif"
+            className="fr.paris.lutece.plugins.formengine.modules.etatcivil.web.ReconnaissanceRecapitulatifSubForm">
+            <title>Récapitulatif des informations saisies</title>
+            <formElements>
+                <fields/>
+                <buttons>
+                    <button name="Etape précédente" type="submit"/>
+                    <button name="Etape suivante" type="submit"/>
+                </buttons>
+            </formElements>
+        </subFormDefinition>
+        <subFormDefinition name="validation"
+            className="fr.paris.lutece.plugins.formengine.modules.etatcivil.web.ValidationSubForm">
+            <title>Validation</title>
+            <formElements>
+                <fields/>
+                <buttons>
+                    <button name="Modifier" type="submit"/>
+                    <button name="Confirmer" type="submit"/>
+                </buttons>
+                <notices>
+                    <noticeGroup name="legislation">
+                        <notice>
+                        L'acte vous sera acheminé par voie postale et non par courrier électronique.
+                        En effet, l'absence de textes légaux ou réglementaires sur la sécurisation des échanges 
+                        et la reconnaissance juridique de la signature électronique, ne permet pas pour le moment 
+                        la transmission par voie télématique des copies ou des extraits d'actes d'état civil.
+                        </notice>
+                        <notice>
+                        En application de l'article 441-7 du code pénal, est puni d'un an d'emprisonnement et de 15000 euros
+                        d'amende le fait :  
+                        <![CDATA[
+                         <ul>
+                           <li>D'établir une attestation ou un certificat faisant état de faits matériellement inexacts.</li>
+                           <li>De falsifier une attestation ou un certificat originairement sincère</li>
+                           <li>De faire usage d'une attestation ou d'un certificat inexact ou falsifié</li>
+                         </ul>
+                        ]]>
+                        </notice>
+                    </noticeGroup>
+                </notices>
+            </formElements>
+        </subFormDefinition>
+        <subFormDefinition name="confirmation"
+            className="fr.paris.lutece.plugins.formengine.modules.etatcivil.web.ConfirmationSubForm">
+            <title>Validation</title>
+            <formElements>
+                <fields/>
+                <buttons>
+                    <button name="OK" type="submit"/>
+                </buttons>
+            </formElements>
+        </subFormDefinition>
+    </subForms>
+    <outputs>
+       <outputSet useTransactionHeaders="false" >
+          <output outputProcessorClassName="fr.paris.lutece.plugins.formengine.modules.etatcivil.service.output.IpLoggerOutputProcessor" />
+          <output outputProcessorClassName="fr.paris.lutece.plugins.formengine.modules.etatcivil.service.output.EtatCivilFileOutputProcessor" />
+          <output outputProcessorClassName="fr.paris.lutece.plugins.formengine.modules.etatcivil.service.output.EtatCivilMailOutputProcessor" />
+      </outputSet>
+   </outputs>
+</formDefinition>

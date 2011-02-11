@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <document>
+      <properties>
+          <title>
+              Formengine - Etat-civil : Download
+          </title>
+      </properties>
+      <body>
+          <section name="Downloads">
+              <p>
+                  You can download the latest distributions of Etat-civil Formengine Lutece module (sources or binaries) at 
+                  <a href="http://adullact.net/projects/plg-etatcivil/">Adullact</a>.
+              </p>
+          </section>
+      </body>
+  </document>

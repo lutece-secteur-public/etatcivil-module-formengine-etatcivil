@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE document PUBLIC "//UNKNOWN/" "http://maven.apache.org/dtd/xdoc_1_0.dtd">
+<document>
+	<properties>
+		<title>Module Formengine - Etat-civil : Configuration</title>
+	</properties>
+	<body>
+		<section name="Installation">
+			<p>
+				Il existe plusieurs possibilités d'installation en
+				fonction de la distribution employée :
+			</p>
+			<ul>
+				<li>
+					Distribution binaire : Le contenu du fichier
+					<code>zip</code>
+					de la distribution binaire doit être décompressé
+					dans une webapp contenant déjà le coeur de lutèce
+					ainsi que le plugin formengine.
+				</li>
+				<li>
+					Sources : Dans ce cas il est nécessaire d'ajouter
+					les dépendances au coeur et au plugin formengine
+					afin de compiler les sources et de se retrouver avec
+					une distribution binaire.
+				</li>
+			</ul>
+			<p>
+				<strong>Remarque :</strong>
+				<br />
+				Il est possible d'obtenir un fichier
+				<code>war</code>
+				déployable en utilisant un packaging de type
+				<code>lutece-site.</code>
+				Ce fichier doit être placé dans le répertoire
+				<code>webapps</code>
+				de votre installation de Tomcat. Il sera automatiquement
+				déployé lors du lancement du serveur.
+			</p>
+			<br />
+		</section>
+		<section name="Configuration">
+			<subsection name="Mode Portail">
+				<p>
+					La configuration correspond à la configuration
+					classique d'un portail Lutèce.
+				</p>
+			</subsection>
+			<subsection name="Mode Standalone">
+				<p>
+					Ce module peut fonctionner en mode Standalone, pour
+					ce faire, il est nécessaire de commenter la
+					déclaration du pool portal dans le fichier
+					<code>db.properties.</code>
+					De plus, il est nécessaire d'activer le plugin
+					manuellement, en ajoutant la ligne suivante dans le
+					fichier
+					<code>plugins.dat</code>
+					:
+					<br />
+					<code>formengine.installed=1</code>
+				</p>
+			</subsection>
+			<subsection name="formengine-etatcivil.properties">
+				<p>
+					Le fonctionnement du module Formengine Etat-civil
+					peut être reconfiguré en modifiant ce fichier.
+				</p>
+				<p>
+					On pourra notament personnaliser <a href="#directory">les répertoires de
+					génération des flux XML</a>, <a href="#exit_url">l'url de redirection depuis
+					le dernier écran de formulaire</a>, <a href="#mail">les informations
+					d'envoi de mail</a>, ...
+				</p>
+				<p>
+					<strong>
+						Propriétés communes à tous les formulaires :
+					</strong>
+				</p>
+				<table>
+					<tr>
+						<th>Propriété</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<td>etatcivil.jaxb.packagename</td>
+						<td>
+							Nom du package contenant les classes métier
+							générées par le plugin jaxb
+						</td>
+					</tr>
+					<tr>
+						<td>etatcivil.xsl.directory</td>
+						<td>
+							Chemin vers le répertoire contenant les
+							feuilles de styles du module
+						</td>
+					</tr>
+					<tr>
+						<td>etatcivil.xsl.file.form.lieuDate</td>
+						<td>
+							Feuille de styles associée à l'écran de
+							saisie de lieu et de date de l'acte demandé
+						</td>
+					</tr>
+					<tr>
+						<td>etatcivil.xsl.file.form.identite</td>
+						<td>
+							Feuille de styles associée à l'écran de
+							saisie de l'identité de la personne
+							concernée par l'acte
+						</td>
+					</tr>
+					<tr>
+						<td>etatcivil.xsl.file.form.choix</td>
+						<td>
+							Feuille de styles associée à l'écran de choix de type
+							et de quantité d'acte demandé
+						</td>
+					</tr>
+					<tr>
+						<td>etatcivil.xsl.file.form.filiation</td>
+						<td>
+							Feuille de styles associée à l'écran de
+							saisie d'information complémentaires sur la
+							filiation de la personne concernée par
+							l'acte
+						</td>
+					</tr>
+					<tr>
+						<td>etatcivil.xsl.file.form.coordonnees</td>
+						<td>
+							Feuille de styles associée à l'écran de
+							saisie des coordonnées du demandeur
+						</td>
+					</tr>
+					<tr>
+						<td>
+							etatcivil.xsl.file.form.infosComplementaires
+						</td>
+						<td>
+							Feuille de styles associée à l'écran de
+							saisie d'information complémentaires
+						</td>
+					</tr>
+					<tr>
+						<td>etatcivil.xsl.file.form.recapitulatif</td>
+						<td>
+							Feuille de styles associée appliquée au
+							boutons de naviguation de l'écran
+							recapitulatif
+						</td>
+					</tr>
+					<tr>
+						<td>etatcivil.xsl.file.form.validation</td>
+						<td>
+							Feuille de styles associée appliquée au
+							boutons de naviguation de l'écran validation
+						</td>
+					</tr>
+					<tr>
+						<td>etatcivil.xsl.file.form.confirmation</td>
+						<td>
+							Feuille de styles associée appliquée au
+							boutons de naviguation de l'écran
+							confirmation
+						</td>
+					</tr>
+					<tr>
+						<td>
+							etatcivil.xsl.file.form.reconnaissance.identite
+						</td>
+						<td>
+							Feuille de styles associée à l'écran de
+							saisie de l'identité de la personne
+							concernée par l'acte de reconnaissance
+						</td>
+					</tr>
+					<tr>
+						<td>
+							etatcivil.xsl.file.summary.recapitulatif
+						</td>
+						<td>
+							Feuille de styles associée à l'écran
+							récapitulatif
+						</td>
+					</tr>
+					<tr>
+						<td>etatcivil.xsl.file.summary.validation</td>
+						<td>
+							Feuille de styles associée à l'écran
+							validation
+						</td>
+					</tr>
+					<tr>
+						<td>etatcivil.xsl.file.summary.confirmation</td>
+						<td>
+							Feuille de styles associée à l'écran
+							confirmation
+						</td>
+					</tr>
+					<tr>
+						<td>
+							etatcivil.xsl.file.summary.reconnaissance.recapitulatif
+						</td>
+						<td>
+							Feuille de styles associée à l'écran
+							récapitulatif de la demande d'acte de
+							reconnaissance
+						</td>
+					</tr>
+					<tr>
+						<td>etatcivil.xsl.file.email</td>
+						<td>
+							Feuille de style contenant le corps du mail
+							accusant réception
+						</td>
+					</tr>
+					<tr>
+						<td><a name="mail"/>etatcivil.email.sender.name</td>
+						<td>
+							Nom à utiliser lors de l'envoi du mail
+							accusant réception
+						</td>
+					</tr>
+					<tr>
+						<td>etatcivil.email.sender.email</td>
+						<td>
+							Adresse de l'expéditeur du mail accusant
+							réception
+						</td>
+					</tr>
+					<tr>
+						<td>etatcivil.date.period.referenceYear</td>
+						<td>
+							Date de référence avant laquelle les actes
+							ne sont pas disponibles
+						</td>
+					</tr>
+					<tr>
+						<td>etatcivil.lieu.ville.unknown</td>
+						<td>
+							Constante utilisée dans le cas où
+							l'arrondissement n'est pas connu. La valeur
+							de cette propriété doit être la même que
+							celle apparaissant dans les fichiers xml de
+							définition des formulaires
+						</td>
+					</tr>
+					<tr>
+						<td>
+							etatcivil.error.date.acte.oneOfTwoRequired
+						</td>
+						<td>
+							Message d'erreur en cas de mauvaise saisie
+							de date d'acte
+						</td>
+					</tr>
+					<tr>
+						<td>
+							etatcivil.error.date.acte.isBeforeStartYear
+						</td>
+						<td>
+							Message d'erreur dans le cas où la date de
+							l'acte demandé est antérieure à la date de
+							référence
+						</td>
+					</tr>
+					<tr>
+						<td>
+							etatcivil.error.reconnaissance.identite.motherOrFatherRequired
+						</td>
+						<td>
+							Message d'erreur, spécifique au formulaire
+							reconnaissance, dans le cas où l'identité de
+							l'un des parents (au moins) n'a pas été
+							renseigné
+						</td>
+					</tr>
+					<tr>
+						<td>
+							etatcivil.error.reconnaissance.identite.childRequired
+						</td>
+						<td>
+							Message d'erreur, spécifique au formulaire
+							reconnaissance, dans le cas où l'identité de
+							l'enfant n'a pas été renseignée
+						</td>
+					</tr>
+				</table>
+				<p>
+					<strong>
+						Propriétés spécifiques aux différents types de
+						formulaire :
+					</strong>
+				</p>
+				<table>
+					<tr>
+						<th>Propriété</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							&lt;nom_de_formulaire&gt;.transaction.code
+						</td>
+						<td>
+							Code utilisé pour l'initialisation de
+							transaction et la génération d'identifiant
+							de transactions
+						</td>
+					</tr>
+					<tr>
+						<td>
+							&lt;nom_de_formulaire&gt;.transaction.name
+						</td>
+						<td>
+							Nom utilisé pour l'initialisation de
+							transactions
+						</td>
+					</tr>
+					<tr>
+						<td>
+							&lt;nom_de_formulaire&gt;.instance.name
+						</td>
+						<td>Nom de l'instance du formulaire</td>
+					</tr>
+					<tr>
+						<td>
+							&lt;nom_de_formulaire&gt;.evenement.nature
+						</td>
+						<td>Nature de l'évènement</td>
+					</tr>
+					<tr>
+						<td>
+							&lt;nom_de_formulaire&gt;.id.prefix
+						</td>
+						<td>
+							Chaîne de caractères utilisée pour préfixer
+							l'identifiant des demandes effectués
+						</td>
+					</tr>
+					<tr>
+						<td><a name="directory"/>
+							&lt;nom_de_formulaire&gt;.xml.directory
+						</td>
+						<td>
+							Chemin vers le répertoire qui contiendra les
+							fichiers xml générés à partir des
+							informations saisies dans le formulaire
+						</td>
+					</tr>
+					<tr>
+						<td>
+							&lt;nom_de_formulaire&gt;.template.header.&lt;...&gt;
+
+						</td>
+						<td>
+							Chemin vers les différents templates
+							d'en-tête d'écrans de formulaire
+						</td>
+					</tr>
+					<tr>
+						<td><a name="exit_url"/>
+							&lt;nom_de_formulaire&gt;.url.exit
+						</td>
+						<td>
+							Url de redirection lors de la sortie du
+							formulaire
+						</td>
+					</tr>
+				</table>
+			</subsection>
+		</section>
+	</body>
+</document>

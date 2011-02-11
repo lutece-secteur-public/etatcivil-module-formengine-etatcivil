@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE document PUBLIC "//UNKNOWN/" "http://maven.apache.org/dtd/xdoc_1_0.dtd">
+<document>
+	<properties>
+		<title>Module Formengine - Etat-civil : Utilisation</title>
+	</properties>
+	<body>
+		<section name="Utilisation">
+			<p>
+				Une fois installé et déployé sur une application web, la
+				premère étape consiste à activer le plugin dans
+				l'interface d'administration de Lutèce, rubrique Gestion des
+				plugins.
+			</p>
+			<p>
+				Les formulaires générés par le module Etat-civil sont
+				accessibles via la XPage du plugin Formengine :
+			</p>
+			<ul>
+				<li>
+					<p>
+						Pour le formulaire de demande d'acte de
+						naissance :
+					</p>
+					<p>
+						<code>
+							http://&lt;host&gt;:&lt;port&gt;/&lt;context&gt;/jsp/site/Portal.jsp?page=formengine&amp;form=naissance
+						</code>
+					</p>
+				</li>
+				<li>
+					<p>
+						Pour le formulaire de demande d'acte de
+						reconnaissance :
+					</p>
+					<p>
+						<code>
+							http://&lt;host&gt;:&lt;port&gt;/&lt;context&gt;/jsp/site/Portal.jsp?page=formengine&amp;form=reconaissances
+						</code>
+					</p>
+				</li>
+				<li>
+					<p>
+						Pour le formulaire de demande d'acte de mariage
+						:
+					</p>
+					<p>
+						<code>
+							http://&lt;host&gt;:&lt;port&gt;/&lt;context&gt;/jsp/site/Portal.jsp?page=formengine&amp;form=mariage
+						</code>
+					</p>
+				</li>
+				<li>
+					<p>
+						Pour le formulaire de demande d'acte de décès :
+					</p>
+					<p>
+						<code>
+							http://&lt;host&gt;:&lt;port&gt;/&lt;context&gt;/jsp/site/Portal.jsp?page=formengine&amp;form=deces
+						</code>
+					</p>
+				</li>
+			</ul>
+			<p>
+				Dans le cas d'une utilisation du module en mode
+				<strong>standalone</strong>, l'url de base :
+				<code>
+					http://&lt;host&gt;:&lt;port&gt;/&lt;context&gt;/jsp/site/<strong>Portal.jsp</strong>
+				</code>
+				est à remplacer par l'url suivante :
+				<code>
+					http://&lt;host&gt;:&lt;port&gt;/&lt;context&gt;/jsp/site/<strong>RunStandaloneApp.jsp</strong>
+				</code>
+			</p>
+			<p>
+				Après validation de la saisie d'un des formulaires,
+				l'écran de confirmation fournit un identifiant de
+				demande. Cet identifiant correspond au nom du fichier
+				xml généré dans le répertoire indiqué dans le fichier
+				<code>formengine-etatcivil.properties.</code>
+			</p>
+			<p>
+				Il y a une définition de répertoire par type de
+				formulaire :
+			</p>
+			<ul>
+				<li>naissance.xml.directory</li>
+				<li>reconnaissance.xml.directory</li>
+				<li>mariage.xml.directory</li>
+				<li>deces.xml.directory</li>
+			</ul>
+		</section>
+	</body>
+</document>

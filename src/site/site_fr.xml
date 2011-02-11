@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+	<version />
+	<body>
+		<links>
+			<item name="EN" href="../index.html" />
+		</links>
+		<menu name="Aperçu">
+			<item name="Introduction" href="index.html" />
+			<item name="Téléchargement" href="download.html" />
+			<item name="Configuration" href="configuration.html" />
+			<item name="Utilisation" href="usage.html" />
+		</menu>
+
+		<menu name="Téléchargements" inherit="bottom">
+			<item name="Versions stables" href="../../../stable_builds/plugins/module-formengine-etatcivil/" />
+			<item name="Nightly builds" href="../../../nightly_builds/plugins/module-formengine-etatcivil/" />
+		</menu>
+
+		<menu ref="reports" />
+	</body>
+</project>

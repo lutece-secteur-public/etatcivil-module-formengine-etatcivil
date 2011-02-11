@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2005 U (http://www.xmlspy.com) by judlin (digitech) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" >
+	<xs:element name="demandeEtatCivil">
+		<xs:annotation>
+			<xs:documentation>Root element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="identifiant" type="xs:string"/>
+				<xs:element name="demandeur" type="demandeurType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>utile si différent de l'interessé</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="natureDocument" type="natureDocumentType">
+					<xs:annotation>
+						<xs:documentation>copie intégrale, extrait avec ou sans filiation, plurilingue</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="nbExemplaire" type="xs:int" minOccurs="0"/>
+				<xs:element name="dateDemande" type="xs:dateTime"/>
+				<xs:element name="evenement" type="evenementType"/>
+				<xs:element name="motif" type="xs:string" minOccurs="0"/>
+				<xs:element name="origine" type="origineECType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>origine de la demande pour l'état civil : courrier, guichet ou internet</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="version" type="xs:string" default="1.0"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="natureEvenementType">
+		<xs:annotation>
+			<xs:documentation>Naissance, mariage, décès, reconnaissance</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NAI"/>
+			<xs:enumeration value="DEC"/>
+			<xs:enumeration value="MAR"/>
+			<xs:enumeration value="REC"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="individuType">
+		<xs:sequence>
+			<xs:element name="noms" type="nomsType"/>
+			<xs:element name="prenoms" type="xs:string" minOccurs="0"/>
+			<xs:element name="genre" type="genreType" minOccurs="0"/>
+			<xs:element name="adresse" type="adresseType" minOccurs="0"/>
+			<xs:element name="sexe" type="sexeType" minOccurs="0"/>
+			<xs:element name="pere" type="individuType" minOccurs="0"/>
+			<xs:element name="mere" type="individuType" minOccurs="0"/>
+			<xs:element name="naissance" type="naissanceType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="demandeurType">
+		<xs:annotation>
+			<xs:documentation>Informations sur le demandeur</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="qualiteDemandeur" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>avocat, notaire, père, mère...</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="individu" type="individuType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="sexeType">
+		<xs:annotation>
+			<xs:documentation>permet de gérer le sexe indeterminé</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="F"/>
+			<xs:enumeration value="M"/>
+			<xs:enumeration value="NA"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="genreType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="M"/>
+			<xs:enumeration value="Mme"/>
+			<xs:enumeration value="Mlle"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="adresseType">
+		<xs:sequence>
+			<xs:element name="ligneAdr1" type="xs:string" minOccurs="0"/>
+			<xs:element name="ligneAdr2" type="xs:string" minOccurs="0"/>
+			<xs:element name="codePostal" type="xs:string" minOccurs="0"/>
+			<xs:element name="lieu" type="lieuType"/>
+			<xs:element name="mail" type="xs:string" minOccurs="0"/>
+			<xs:element name="tel" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="typeInteresseType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="reconnu"/>
+			<xs:enumeration value="auteur"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="natureDocumentType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CPI"/>
+			<xs:enumeration value="EXTAF"/>
+			<xs:enumeration value="EXTSF"/>
+			<xs:enumeration value="EXTPL"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="origineECType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="internet"/>
+			<xs:enumeration value="guichet"/>
+			<xs:enumeration value="courrier"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="evenementType">
+		<xs:sequence>
+			<xs:element name="interesse" type="individuType"/>
+			<xs:element name="conjoint" type="individuType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Seulement pour les mariages</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="natureEvenement" type="natureEvenementType">
+				<xs:annotation>
+					<xs:documentation>naissance, mariage, décès, reconnaissance</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="typeInteresse" type="typeInteresseType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>necessaire pour les reconnaissances seulement, l'interessé pouvant etre le parent ou le reconnu, il faut donc préciser.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dateEvenement" type="dateEvenementType"/>
+			<xs:element name="lieuEvenement" type="lieuType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="nomsType">
+		<xs:sequence>
+			<xs:element name="nomDeFamille" type="xs:string"/>
+			<xs:element name="nomUsage" type="xs:string" minOccurs="0"/>
+			<xs:element name="typeUsage" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>précission sur le nom d'usage: nom d'épouse, veuve, d'usage...</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="naissanceType">
+		<xs:sequence>
+			<xs:element name="date" type="dateCiviqueType"/>
+			<xs:element name="lieu" type="lieuType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="lieuType">
+		<xs:sequence>
+			<xs:element name="ville" type="xs:string"/>
+			<xs:element name="province" type="xs:string" minOccurs="0"/>
+			<xs:element name="pays" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="dateEvenementType">
+		<xs:sequence>
+			<xs:element name="dateDebut" type="xs:date"/>
+			<xs:element name="dateFin" type="xs:date" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="dateCiviqueType">
+		<xs:annotation>
+			<xs:documentation>Permet de gérer les dates incomplètes</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="xs:date xs:gYear xs:gYearMonth"/>
+	</xs:simpleType>
+</xs:schema>

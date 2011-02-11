@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE document PUBLIC "//UNKNOWN/" "http://maven.apache.org/dtd/xdoc_1_0.dtd">
+<document>
+	<properties>
+		<title>Module Formengine - Etat-civil : Introduction</title>
+	</properties>
+	<body>
+		<section name="Descriptif du plugin">
+			<subsection name="Introduction">
+				<p>
+					Le plugin Etat-civil est un module du plugin
+					<a
+						href="http://dev.lutece.paris.fr/plugins/plugin-formengine/fr/index.html">
+						Formengine
+					</a>
+					(plugin permettant de générer des formulaires), il
+					lui apporte les fonctionnalités de demande d'actes
+					d'état-civil.
+				</p>
+				<p>
+					Le formulaire est décrit sous la forme d'un fichier
+					xml, qui sera utilisé pour générer les écrans
+					correspondants.
+					<br />
+					L'accès aux formulaires générés se fait à travers la
+					XPage du plugin Formengine.
+				</p>
+			</subsection>
+			<subsection name="Fonctionnalités">
+				<p>Etat-civil propose les formulaires suivants :</p>
+				<ul>
+					<li>demande d'acte de naissance</li>
+					<li>demande d'acte de reconnaissance</li>
+					<li>demande d'acte de mariage</li>
+					<li>demande d'acte de décès</li>
+				</ul>
+				<p>
+					Les saisies de formulaires s'effectuent en plusieurs
+					étapes, correspondant chacunes à un écran. De manière
+					générale le processus de saisie et le suivant :
+				</p>
+				<ul>
+					<li>
+						Saisie des informations concernant l'acte
+						demandé
+					</li>
+					<li>
+						Saisie des informations sur la personne
+						concernée par l'acte demandé
+					</li>
+					<li>Saisie d'informations complémentaires</li>
+					<li>Récapitulatif des informations saisies</li>
+					<li>Validation des informations saisies</li>
+					<li>Confirmation de la demande</li>
+				</ul>
+				<br />
+				<p>
+					La validation de l'un de ces formulaires entraine la
+					création d'un flux xml contenant les informations
+					saisies et pouvant être traité par le service de
+					recherche concerné par la demande.
+				</p>
+				<br />
+				<p>
+					Si, lors de la saisie, l'utilisateur a entré une
+					adresse e-mail, le module Etat-civil pourra gérer
+					l'envoi d'un accusé de réception de la demande de
+					document.
+				</p>
+			</subsection>
+		</section>
+	</body>
+</document>
