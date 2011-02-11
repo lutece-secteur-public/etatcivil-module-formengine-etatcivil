@@ -63,4 +63,10 @@
 		<jiraProjectName>ETATCIVIL</jiraProjectName>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	
+	<scm>
+        <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/applications/teleservices/trunk/module-formengine-etatcivil</connection>
+        <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/applications/teleservices/trunk/module-formengine-etatcivil</developerConnection>
+        <url>http://dev.lutece.paris.fr/viewvc/lutece/applications/teleservices/trunk/module-formengine-etatcivil</url>
+    </scm>
 </project>
