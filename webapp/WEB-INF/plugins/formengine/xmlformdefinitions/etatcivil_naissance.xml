@@ -122,7 +122,7 @@
      </field>
     </fields>
     <buttons>
-     <button name="Etape précédente" type="submit"/>
+     <button name="Etape precedente" type="submit"/>
      <button name="Etape suivante" type="submit"/>
     </buttons>
 
@@ -162,7 +162,7 @@
     </fields>
 
      <buttons>
-     <button name="Etape précédente" type="submit"/>
+     <button name="Etape precedente" type="submit"/>
      <button name="Etape suivante" type="submit"/>
     </buttons>
 
@@ -252,7 +252,7 @@
      </field>
     </fields>
    <buttons>
-     <button name="Etape précédente" type="submit"/>
+     <button name="Etape precedente" type="submit"/>
      <button name="Etape suivante" type="submit"/>
     </buttons>
    </formElements>
@@ -337,7 +337,7 @@
      </field>
     </fields>
     <buttons>
-     <button name="Etape précédente" type="submit"/>
+     <button name="Etape precedente" type="submit"/>
      <button name="Etape suivante" type="submit"/>
     </buttons>
    </formElements>
@@ -404,7 +404,7 @@
      </field>
     </fields>
     <buttons>
-     <button name="Etape précédente" type="submit"/>
+     <button name="Etape precedente" type="submit"/>
      <button name="Etape suivante" type="submit"/>
     </buttons>
 
@@ -423,7 +423,7 @@
    <formElements>
     <fields/>
     <buttons>
-     <button name="Etape précédente" type="submit"/>
+     <button name="Etape precedente" type="submit"/>
      <button name="Etape suivante" type="submit"/>
     </buttons>
    </formElements>

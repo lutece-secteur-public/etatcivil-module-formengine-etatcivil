@@ -38,7 +38,7 @@ public class Constants
     public static final String ACTION_NAME_CONFIRM = "Confirmer";
     public static final String ACTION_NAME_MODIFY = "Modifier";
     public static final String ACTION_NAME_NEXT = "Etape suivante";
-    public static final String ACTION_NAME_PREVIOUS = "Etape précédente";
+    public static final String ACTION_NAME_PREVIOUS = "Etape precedente";
     public static final String SHARED_PROPERTY_PREFIX = "etatcivil";
     public static final String BOOKMARK_SUBFORM_TITLE = "@subform_title@";
     public static final String BOOKMARK_FORM_TITLE = "@form_title@";
