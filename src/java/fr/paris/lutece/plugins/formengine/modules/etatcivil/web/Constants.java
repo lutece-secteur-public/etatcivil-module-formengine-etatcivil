@@ -33,6 +33,9 @@
  */
 package fr.paris.lutece.plugins.formengine.modules.etatcivil.web;
 
+/**
+ * Constants of module Formengine etat civil
+ */
 public class Constants
 {
     public static final String ACTION_NAME_CONFIRM = "Confirmer";
@@ -43,4 +46,8 @@ public class Constants
     public static final String BOOKMARK_SUBFORM_TITLE = "@subform_title@";
     public static final String BOOKMARK_FORM_TITLE = "@form_title@";
     public static final String BOOKMARK_MENU_HEADER = "@menu_header@";
+
+    public static final String PROPERTY_LUTECE_USER_FIRST_NAME = "etatcivil.lutece.user.firstname";
+    public static final String PROPERTY_LUTECE_USER_LAST_NAME = "etatcivil.lutece.user.lastname";
+    public static final String PROPERTY_LUTECE_USER_EMAIL = "etatcivil.lutece.user.email";
 }

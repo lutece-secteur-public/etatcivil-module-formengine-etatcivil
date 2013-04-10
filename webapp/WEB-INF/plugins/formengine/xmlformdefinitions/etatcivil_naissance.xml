@@ -268,7 +268,6 @@
       <choiceList>
        <choice label="Monsieur" value="Mr"/>
        <choice label="Madame" value="Mme"/>
-       <choice label="Mademoiselle" value="Mlle"/>
       </choiceList>
       <checkFieldRules>
        <checkRule type="fieldRequired" parameter="true"/>

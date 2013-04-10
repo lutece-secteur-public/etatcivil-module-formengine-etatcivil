@@ -42,6 +42,8 @@ import fr.paris.lutece.plugins.formengine.modules.etatcivil.business.jaxb.NomsTy
 import fr.paris.lutece.plugins.formengine.modules.etatcivil.business.jaxb.ObjectFactory;
 import fr.paris.lutece.plugins.formengine.modules.etatcivil.business.jaxb.TypeInteresseType;
 import fr.paris.lutece.plugins.formengine.web.SubForm;
+import fr.paris.lutece.portal.service.security.LuteceUser;
+import fr.paris.lutece.portal.service.security.SecurityService;
 import fr.paris.lutece.portal.service.template.AppTemplateService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.util.html.HtmlTemplate;
@@ -51,12 +53,14 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
+
 
 /**
  * @author lutecer
- *
- * TODO To change the template for this generated type comment go to
- * Window - Preferences - Java - Code Style - Code Templates
+ * 
+ *         TODO To change the template for this generated type comment go to
+ *         Window - Preferences - Java - Code Style - Code Templates
  */
 public class ReconnaissanceIdentiteSubForm extends SubForm
 {
@@ -69,21 +73,29 @@ public class ReconnaissanceIdentiteSubForm extends SubForm
     /**
      *
      */
-    public ReconnaissanceIdentiteSubForm(  )
+    public ReconnaissanceIdentiteSubForm( )
     {
-        super(  );
+        super( );
     }
 
-    /* (non-Javadoc)
-     * @see fr.paris.lutece.plugins.formengine.web.SubForm#getXslFormElementsFileName()
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * fr.paris.lutece.plugins.formengine.web.SubForm#getXslFormElementsFileName
+     * ()
      */
-    protected String getXslFormElementsFileName(  )
+    protected String getXslFormElementsFileName( )
     {
         return AppPropertiesService.getProperty( Constants.SHARED_PROPERTY_PREFIX + PROPERTY_FRAGMENT_XSL_FILE_FORM );
     }
 
-    /* (non-Javadoc)
-     * @see fr.paris.lutece.plugins.formengine.web.SubForm#doAction(java.lang.String, javax.servlet.http.HttpServletRequest)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * fr.paris.lutece.plugins.formengine.web.SubForm#doAction(java.lang.String,
+     * javax.servlet.http.HttpServletRequest)
      */
     public String doAction( String strActionName, HttpServletRequest request )
     {
@@ -91,7 +103,7 @@ public class ReconnaissanceIdentiteSubForm extends SubForm
 
         if ( strActionName == null )
         {
-            strNextSubForm = this.getName(  );
+            strNextSubForm = this.getName( );
         }
         else if ( strActionName.equals( Constants.ACTION_NAME_NEXT ) )
         {
@@ -99,22 +111,22 @@ public class ReconnaissanceIdentiteSubForm extends SubForm
 
             if ( bValid )
             {
-                strNextSubForm = this.getNextSubForm(  ).getName(  );
-                this.getParentForm(  ).setIsAccessToSubFormAllowed( request, strNextSubForm, true );
+                strNextSubForm = this.getNextSubForm( ).getName( );
+                this.getParentForm( ).setIsAccessToSubFormAllowed( request, strNextSubForm, true );
             }
             else
             {
-                strNextSubForm = this.getName(  );
+                strNextSubForm = this.getName( );
             }
         }
         else if ( strActionName.equals( Constants.ACTION_NAME_PREVIOUS ) )
         {
             this.fillFields( request );
-            strNextSubForm = this.getPreviousSubForm(  ).getName(  );
+            strNextSubForm = this.getPreviousSubForm( ).getName( );
         }
         else
         {
-            strNextSubForm = this.getName(  );
+            strNextSubForm = this.getName( );
         }
 
         return strNextSubForm;
@@ -137,46 +149,46 @@ public class ReconnaissanceIdentiteSubForm extends SubForm
         if ( bValid )
         {
             // create the ObjectFactory
-            ObjectFactory factory = new ObjectFactory(  );
+            ObjectFactory factory = new ObjectFactory( );
 
             // retrieve the root element in session
             DemandeEtatCivil demandeEtatCivil;
-            demandeEtatCivil = (DemandeEtatCivil) getParentForm(  ).getFormDocument( request );
+            demandeEtatCivil = (DemandeEtatCivil) getParentForm( ).getFormDocument( request );
 
             if ( demandeEtatCivil == null )
             {
-                demandeEtatCivil = factory.createDemandeEtatCivil(  );
+                demandeEtatCivil = factory.createDemandeEtatCivil( );
             }
 
-            EvenementType evenement = demandeEtatCivil.getEvenement(  );
+            EvenementType evenement = demandeEtatCivil.getEvenement( );
 
             if ( evenement == null )
             {
-                evenement = factory.createEvenementType(  );
+                evenement = factory.createEvenementType( );
             }
 
             IndividuType interesse;
-            interesse = evenement.getInteresse(  );
+            interesse = evenement.getInteresse( );
 
             if ( interesse == null )
             {
-                interesse = factory.createIndividuType(  );
+                interesse = factory.createIndividuType( );
             }
 
             IndividuType pere;
-            pere = interesse.getPere(  );
+            pere = interesse.getPere( );
 
             if ( pere == null )
             {
-                pere = factory.createIndividuType(  );
+                pere = factory.createIndividuType( );
             }
 
             Field fieldNomPere = this.getFieldFromName( request, "nomPere" );
 
-            if ( ( fieldNomPere.getValue(  ) != null ) && ( !fieldNomPere.getValue(  ).trim(  ).equals( "" ) ) )
+            if ( ( fieldNomPere.getValue( ) != null ) && ( !fieldNomPere.getValue( ).trim( ).equals( "" ) ) )
             {
-                NomsType noms = factory.createNomsType(  );
-                noms.setNomDeFamille( fieldNomPere.getValue(  ) );
+                NomsType noms = factory.createNomsType( );
+                noms.setNomDeFamille( fieldNomPere.getValue( ) );
                 pere.setNoms( noms );
             }
             else
@@ -186,13 +198,13 @@ public class ReconnaissanceIdentiteSubForm extends SubForm
 
             Field fieldPrenomPere = this.getFieldFromName( request, "prenomPere" );
 
-            if ( ( fieldPrenomPere.getValue(  ) != null ) && ( !fieldPrenomPere.getValue(  ).trim(  ).equals( "" ) ) )
+            if ( ( fieldPrenomPere.getValue( ) != null ) && ( !fieldPrenomPere.getValue( ).trim( ).equals( "" ) ) )
             {
-                pere.setPrenoms( fieldPrenomPere.getValue(  ) );
+                pere.setPrenoms( fieldPrenomPere.getValue( ) );
 
-                if ( pere.getNoms(  ) == null )
+                if ( pere.getNoms( ) == null )
                 {
-                    NomsType nomsVide = factory.createNomsType(  );
+                    NomsType nomsVide = factory.createNomsType( );
                     nomsVide.setNomDeFamille( "" );
                     pere.setNoms( nomsVide );
                 }
@@ -202,25 +214,25 @@ public class ReconnaissanceIdentiteSubForm extends SubForm
                 pere.setPrenoms( null );
             }
 
-            if ( ( pere.getNoms(  ) != null ) )
+            if ( ( pere.getNoms( ) != null ) )
             {
                 interesse.setPere( pere );
             }
 
             IndividuType mere;
-            mere = interesse.getMere(  );
+            mere = interesse.getMere( );
 
             if ( mere == null )
             {
-                mere = factory.createIndividuType(  );
+                mere = factory.createIndividuType( );
             }
 
             Field fieldNomMere = this.getFieldFromName( request, "nomMere" );
 
-            if ( ( fieldNomMere.getValue(  ) != null ) && ( !fieldNomMere.getValue(  ).trim(  ).equals( "" ) ) )
+            if ( ( fieldNomMere.getValue( ) != null ) && ( !fieldNomMere.getValue( ).trim( ).equals( "" ) ) )
             {
-                NomsType noms = factory.createNomsType(  );
-                noms.setNomDeFamille( fieldNomMere.getValue(  ) );
+                NomsType noms = factory.createNomsType( );
+                noms.setNomDeFamille( fieldNomMere.getValue( ) );
                 mere.setNoms( noms );
             }
             else
@@ -230,13 +242,13 @@ public class ReconnaissanceIdentiteSubForm extends SubForm
 
             Field fieldPrenomMere = this.getFieldFromName( request, "prenomMere" );
 
-            if ( ( fieldPrenomMere.getValue(  ) != null ) && ( !fieldPrenomMere.getValue(  ).trim(  ).equals( "" ) ) )
+            if ( ( fieldPrenomMere.getValue( ) != null ) && ( !fieldPrenomMere.getValue( ).trim( ).equals( "" ) ) )
             {
-                mere.setPrenoms( fieldPrenomMere.getValue(  ) );
+                mere.setPrenoms( fieldPrenomMere.getValue( ) );
 
-                if ( mere.getNoms(  ) == null )
+                if ( mere.getNoms( ) == null )
                 {
-                    NomsType nomsVide = factory.createNomsType(  );
+                    NomsType nomsVide = factory.createNomsType( );
                     nomsVide.setNomDeFamille( "" );
                     mere.setNoms( nomsVide );
                 }
@@ -246,30 +258,30 @@ public class ReconnaissanceIdentiteSubForm extends SubForm
                 mere.setPrenoms( null );
             }
 
-            if ( ( mere.getNoms(  ) != null ) )
+            if ( ( mere.getNoms( ) != null ) )
             {
                 interesse.setMere( mere );
             }
 
-            NomsType noms = factory.createNomsType(  );
+            NomsType noms = factory.createNomsType( );
             Field fieldNom = this.getFieldFromName( request, "nom" );
-            String strNomValue = fieldNom.getValue(  );
+            String strNomValue = fieldNom.getValue( );
 
             Field fieldPrenom = this.getFieldFromName( request, "prenom" );
-            String strPrenomValue = fieldPrenom.getValue(  );
+            String strPrenomValue = fieldPrenom.getValue( );
 
             //if the name of the chield is not known we take the name of the author of the "reconnaisasnce".
             if ( strNomValue.equals( "" ) )
             {
-                if ( ( fieldPrenomPere.getValue(  ) != null ) && ( !fieldPrenomPere.getValue(  ).trim(  ).equals( "" ) ) )
+                if ( ( fieldPrenomPere.getValue( ) != null ) && ( !fieldPrenomPere.getValue( ).trim( ).equals( "" ) ) )
                 {
-                    strNomValue = pere.getNoms(  ).getNomDeFamille(  );
-                    strPrenomValue = pere.getPrenoms(  );
+                    strNomValue = pere.getNoms( ).getNomDeFamille( );
+                    strPrenomValue = pere.getPrenoms( );
                 }
-                else if ( ( fieldNomMere.getValue(  ) != null ) && ( !fieldNomMere.getValue(  ).trim(  ).equals( "" ) ) )
+                else if ( ( fieldNomMere.getValue( ) != null ) && ( !fieldNomMere.getValue( ).trim( ).equals( "" ) ) )
                 {
-                    strNomValue = mere.getNoms(  ).getNomDeFamille(  );
-                    strPrenomValue = mere.getPrenoms(  );
+                    strNomValue = mere.getNoms( ).getNomDeFamille( );
+                    strPrenomValue = mere.getPrenoms( );
                 }
 
                 evenement.setTypeInteresse( TypeInteresseType.AUTEUR );
@@ -290,13 +302,13 @@ public class ReconnaissanceIdentiteSubForm extends SubForm
 
             Field fieldQuantity = this.getFieldFromName( request, "nombreActes" );
 
-            int nQuantity = Integer.parseInt( fieldQuantity.getValue(  ) );
+            int nQuantity = Integer.parseInt( fieldQuantity.getValue( ) );
 
             demandeEtatCivil.setNbExemplaire( nQuantity );
 
             demandeEtatCivil.setNatureDocument( NatureDocumentType.CPI );
 
-            this.getParentForm(  ).setFormDocument( request, demandeEtatCivil );
+            this.getParentForm( ).setFormDocument( request, demandeEtatCivil );
         }
 
         return bValid;
@@ -307,17 +319,33 @@ public class ReconnaissanceIdentiteSubForm extends SubForm
     */
     protected String displayForm( HttpServletRequest request )
     {
-        String strForm = "";
+        String strForm = StringUtils.EMPTY;
 
-        Map params = new HashMap(  );
+        Map<String, Object> params = new HashMap<String, Object>( );
 
-        Field fieldMomentReconnaissance = (Field) this.getPreviousSubForm(  )
-                                                      .getFieldFromName( request, FIELD_NAME_MOMENT_REC );
+        Field fieldMomentReconnaissance = this.getPreviousSubForm( ).getFieldFromName( request, FIELD_NAME_MOMENT_REC );
 
-        if ( ( fieldMomentReconnaissance != null ) && ( fieldMomentReconnaissance.getValue(  ) != null ) &&
-                ( fieldMomentReconnaissance.getValue(  ).equals( "1" ) ) )
+        if ( ( fieldMomentReconnaissance != null ) && ( fieldMomentReconnaissance.getValue( ) != null )
+                && ( fieldMomentReconnaissance.getValue( ).equals( "1" ) ) )
         {
             params.put( PARAMETER_SHOW_CHILD_FIELDS, "1" );
+        }
+
+        LuteceUser luteceUser = SecurityService.getInstance( ).getRegisteredUser( request );
+        if ( luteceUser != null )
+        {
+            Field field = this.getFieldFromName( request, "nom" );
+            if ( field != null && StringUtils.isEmpty( field.getValue( ) ) )
+            {
+                field.setValue( luteceUser.getUserInfo( AppPropertiesService
+                        .getProperty( Constants.PROPERTY_LUTECE_USER_LAST_NAME ) ) );
+            }
+            field = this.getFieldFromName( request, "prenom" );
+            if ( field != null && StringUtils.isEmpty( field.getValue( ) ) )
+            {
+                field.setValue( luteceUser.getUserInfo( AppPropertiesService
+                        .getProperty( Constants.PROPERTY_LUTECE_USER_FIRST_NAME ) ) );
+            }
         }
 
         strForm = this.buildHtmlForm( getFormElements( request ), params );
@@ -325,27 +353,29 @@ public class ReconnaissanceIdentiteSubForm extends SubForm
         return strForm;
     }
 
-    /* (non-Javadoc)
-     * @see fr.paris.lutece.plugins.formengine.web.SubForm#displaySummary(javax.servlet.http.HttpServletRequest)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * fr.paris.lutece.plugins.formengine.web.SubForm#displaySummary(javax.servlet
+     * .http.HttpServletRequest)
      */
     protected String displaySummary( HttpServletRequest request )
     {
-        return "";
+        return StringUtils.EMPTY;
     }
 
     protected String displayHeader( HttpServletRequest request )
     {
-        HtmlTemplate templateMenu = AppTemplateService.getTemplate( AppPropertiesService.getProperty( getParentForm(  )
-                                                                                                          .getName(  ) +
-                    PROPERTY_FRAGMENT_TEMPLATE_MENU_HEADER ) );
+        HtmlTemplate templateMenu = AppTemplateService.getTemplate( AppPropertiesService.getProperty( getParentForm( )
+                .getName( ) + PROPERTY_FRAGMENT_TEMPLATE_MENU_HEADER ) );
 
-        HtmlTemplate template = AppTemplateService.getTemplate( AppPropertiesService.getProperty( getParentForm(  )
-                                                                                                      .getName(  ) +
-                    PROPERTY_FRAGMENT_TEMPLATE_HEADER_IDENTITE ) );
-        template.substitute( Constants.BOOKMARK_FORM_TITLE, this.getParentForm(  ).getTitle(  ) );
-        template.substitute( Constants.BOOKMARK_SUBFORM_TITLE, this.getTitle(  ) );
-        template.substitute( Constants.BOOKMARK_MENU_HEADER, templateMenu.getHtml(  ) );
+        HtmlTemplate template = AppTemplateService.getTemplate( AppPropertiesService.getProperty( getParentForm( )
+                .getName( ) + PROPERTY_FRAGMENT_TEMPLATE_HEADER_IDENTITE ) );
+        template.substitute( Constants.BOOKMARK_FORM_TITLE, this.getParentForm( ).getTitle( ) );
+        template.substitute( Constants.BOOKMARK_SUBFORM_TITLE, this.getTitle( ) );
+        template.substitute( Constants.BOOKMARK_MENU_HEADER, templateMenu.getHtml( ) );
 
-        return template.getHtml(  );
+        return template.getHtml( );
     }
 }

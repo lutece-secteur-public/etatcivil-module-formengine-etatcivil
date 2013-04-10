@@ -40,18 +40,22 @@ import fr.paris.lutece.plugins.formengine.modules.etatcivil.business.jaxb.Demand
 import fr.paris.lutece.plugins.formengine.modules.etatcivil.business.jaxb.IndividuType;
 import fr.paris.lutece.plugins.formengine.modules.etatcivil.business.jaxb.ObjectFactory;
 import fr.paris.lutece.plugins.formengine.web.SubForm;
+import fr.paris.lutece.portal.service.security.LuteceUser;
+import fr.paris.lutece.portal.service.security.SecurityService;
 import fr.paris.lutece.portal.service.template.AppTemplateService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.util.html.HtmlTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
+
 
 /**
  * @author lutecer
- *
- * TODO To change the template for this generated type comment go to
- * Window - Preferences - Java - Code Style - Code Templates
+ * 
+ *         TODO To change the template for this generated type comment go to
+ *         Window - Preferences - Java - Code Style - Code Templates
  */
 public class InfosComplementairesSubForm extends SubForm
 {
@@ -59,16 +63,25 @@ public class InfosComplementairesSubForm extends SubForm
     private static final String PROPERTY_FRAGMENT_TEMPLATE_MENU_HEADER = ".template.header.menu";
     private static final String PROPERTY_FRAGMENT_TEMPLATE_HEADER = ".template.header.infos_complementaires";
 
+    private static final String FIELD_NAME_EMAIL = "email";
+    private static final String FIELD_NAME_NUM_TEL = "numTelephone";
+    private static final String FIELD_NAME_TYPE_DEMANDE = "typeDemandeur";
+    private static final String FIELD_NAME_MOTIF_DEMANDE = "motifDemande";
+
     /**
      *
      */
-    public InfosComplementairesSubForm(  )
+    public InfosComplementairesSubForm( )
     {
-        super(  );
+        super( );
     }
 
-    /* (non-Javadoc)
-     * @see fr.paris.lutece.plugins.formengine.web.SubForm#doAction(java.lang.String, javax.servlet.http.HttpServletRequest)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * fr.paris.lutece.plugins.formengine.web.SubForm#doAction(java.lang.String,
+     * javax.servlet.http.HttpServletRequest)
      */
     public String doAction( String strActionName, HttpServletRequest request )
     {
@@ -76,7 +89,7 @@ public class InfosComplementairesSubForm extends SubForm
 
         if ( strActionName == null )
         {
-            strNextSubForm = this.getName(  );
+            strNextSubForm = this.getName( );
         }
         else if ( strActionName.equals( Constants.ACTION_NAME_NEXT ) )
         {
@@ -84,31 +97,31 @@ public class InfosComplementairesSubForm extends SubForm
 
             if ( bValid )
             {
-                strNextSubForm = this.getNextSubForm(  ).getName(  );
-                this.getParentForm(  ).setIsAccessToSubFormAllowed( request, strNextSubForm, true );
+                strNextSubForm = this.getNextSubForm( ).getName( );
+                this.getParentForm( ).setIsAccessToSubFormAllowed( request, strNextSubForm, true );
             }
             else
             {
-                strNextSubForm = this.getName(  );
+                strNextSubForm = this.getName( );
             }
         }
         else if ( strActionName.equals( Constants.ACTION_NAME_PREVIOUS ) )
         {
             this.fillFields( request );
-            strNextSubForm = this.getPreviousSubForm(  ).getName(  );
+            strNextSubForm = this.getPreviousSubForm( ).getName( );
         }
         else
         {
-            strNextSubForm = this.getName(  );
+            strNextSubForm = this.getName( );
         }
 
         return strNextSubForm;
     }
 
     /**
-         * @param request
-         * @return
-         */
+     * @param request
+     * @return
+     */
     private boolean doSetInfos( HttpServletRequest request )
     {
         boolean bValid = false;
@@ -122,63 +135,63 @@ public class InfosComplementairesSubForm extends SubForm
         if ( bValid )
         {
             // create the ObjectFactory
-            ObjectFactory factory = new ObjectFactory(  );
+            ObjectFactory factory = new ObjectFactory( );
 
             // retrieve the root element in session
             DemandeEtatCivil demandeEtatCivil;
-            demandeEtatCivil = (DemandeEtatCivil) getParentForm(  ).getFormDocument( request );
+            demandeEtatCivil = (DemandeEtatCivil) getParentForm( ).getFormDocument( request );
 
             if ( demandeEtatCivil == null )
             {
-                demandeEtatCivil = factory.createDemandeEtatCivil(  );
+                demandeEtatCivil = factory.createDemandeEtatCivil( );
             }
 
-            DemandeurType demandeur = demandeEtatCivil.getDemandeur(  );
+            DemandeurType demandeur = demandeEtatCivil.getDemandeur( );
 
             if ( demandeur == null )
             {
-                demandeur = factory.createDemandeurType(  );
+                demandeur = factory.createDemandeurType( );
             }
 
-            demandeur.getIndividu(  );
+            demandeur.getIndividu( );
 
             IndividuType individu;
-            individu = demandeur.getIndividu(  );
+            individu = demandeur.getIndividu( );
 
             if ( individu == null )
             {
-                individu = factory.createIndividuType(  );
+                individu = factory.createIndividuType( );
             }
 
-            AdresseType adresse = individu.getAdresse(  );
+            AdresseType adresse = individu.getAdresse( );
 
             if ( adresse == null )
             {
-                adresse = factory.createAdresseType(  );
+                adresse = factory.createAdresseType( );
             }
 
-            Field fieldNumTel = this.getFieldFromName( request, "numTelephone" );
+            Field fieldNumTel = this.getFieldFromName( request, FIELD_NAME_NUM_TEL );
 
-            if ( ( fieldNumTel.getValue(  ) != null ) && ( !fieldNumTel.getValue(  ).trim(  ).equals( "" ) ) )
+            if ( ( fieldNumTel.getValue( ) != null ) && ( !fieldNumTel.getValue( ).trim( ).equals( "" ) ) )
             {
-                adresse.setTel( fieldNumTel.getValue(  ) );
+                adresse.setTel( fieldNumTel.getValue( ) );
             }
 
-            Field fieldEmail = this.getFieldFromName( request, "email" );
+            Field fieldEmail = this.getFieldFromName( request, FIELD_NAME_EMAIL );
 
-            if ( ( fieldEmail.getValue(  ) != null ) && ( !fieldEmail.getValue(  ).trim(  ).equals( "" ) ) )
+            if ( ( fieldEmail.getValue( ) != null ) && ( !fieldEmail.getValue( ).trim( ).equals( "" ) ) )
             {
-                adresse.setMail( fieldEmail.getValue(  ) );
+                adresse.setMail( fieldEmail.getValue( ) );
             }
 
             individu.setAdresse( adresse );
             demandeur.setIndividu( individu );
 
-            Field fieldTypeDemandeur = this.getFieldFromName( request, "typeDemandeur" );
+            Field fieldTypeDemandeur = this.getFieldFromName( request, FIELD_NAME_TYPE_DEMANDE );
 
             if ( fieldTypeDemandeur != null )
             {
-                demandeur.setQualiteDemandeur( fieldTypeDemandeur.getValue(  ) );
+                demandeur.setQualiteDemandeur( fieldTypeDemandeur.getValue( ) );
             }
             else
             {
@@ -187,14 +200,14 @@ public class InfosComplementairesSubForm extends SubForm
 
             demandeEtatCivil.setDemandeur( demandeur );
 
-            Field fieldMotif = this.getFieldFromName( request, "motifDemande" );
+            Field fieldMotif = this.getFieldFromName( request, FIELD_NAME_MOTIF_DEMANDE );
 
-            if ( ( fieldMotif.getValue(  ) != null ) && ( !fieldMotif.getValue(  ).trim(  ).equals( "" ) ) )
+            if ( ( fieldMotif.getValue( ) != null ) && ( !fieldMotif.getValue( ).trim( ).equals( "" ) ) )
             {
-                demandeEtatCivil.setMotif( fieldMotif.getValue(  ) );
+                demandeEtatCivil.setMotif( fieldMotif.getValue( ) );
             }
 
-            this.getParentForm(  ).setFormDocument( request, demandeEtatCivil );
+            this.getParentForm( ).setFormDocument( request, demandeEtatCivil );
         }
 
         return bValid;
@@ -208,28 +221,49 @@ public class InfosComplementairesSubForm extends SubForm
         return "";
     }
 
-    /* (non-Javadoc)
-     * @see fr.paris.lutece.plugins.formengine.web.SubForm#getXslFormElementsFileName()
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * fr.paris.lutece.plugins.formengine.web.SubForm#getXslFormElementsFileName
+     * ()
      */
-    protected String getXslFormElementsFileName(  )
+    protected String getXslFormElementsFileName( )
     {
         return AppPropertiesService.getProperty( Constants.SHARED_PROPERTY_PREFIX + PROPERTY_FRAGMENT_XSL_FILE_FORM );
     }
 
     protected String displayHeader( HttpServletRequest request )
     {
-        HtmlTemplate template = AppTemplateService.getTemplate( AppPropertiesService.getProperty( getParentForm(  )
-                                                                                                      .getName(  ) +
-                    PROPERTY_FRAGMENT_TEMPLATE_HEADER ) );
+        HtmlTemplate template = AppTemplateService.getTemplate( AppPropertiesService.getProperty( getParentForm( )
+                .getName( ) + PROPERTY_FRAGMENT_TEMPLATE_HEADER ) );
 
-        template.substitute( Constants.BOOKMARK_FORM_TITLE, this.getParentForm(  ).getTitle(  ) );
-        template.substitute( Constants.BOOKMARK_SUBFORM_TITLE, this.getTitle(  ) );
+        template.substitute( Constants.BOOKMARK_FORM_TITLE, this.getParentForm( ).getTitle( ) );
+        template.substitute( Constants.BOOKMARK_SUBFORM_TITLE, this.getTitle( ) );
 
-        HtmlTemplate templateMenu = AppTemplateService.getTemplate( AppPropertiesService.getProperty( getParentForm(  )
-                                                                                                          .getName(  ) +
-                    PROPERTY_FRAGMENT_TEMPLATE_MENU_HEADER ) );
-        template.substitute( Constants.BOOKMARK_MENU_HEADER, templateMenu.getHtml(  ) );
+        HtmlTemplate templateMenu = AppTemplateService.getTemplate( AppPropertiesService.getProperty( getParentForm( )
+                .getName( ) + PROPERTY_FRAGMENT_TEMPLATE_MENU_HEADER ) );
+        template.substitute( Constants.BOOKMARK_MENU_HEADER, templateMenu.getHtml( ) );
 
-        return template.getHtml(  );
+        return template.getHtml( );
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected String displayForm( final HttpServletRequest request )
+    {
+        LuteceUser luteceUser = SecurityService.getInstance( ).getRegisteredUser( request );
+        if ( luteceUser != null )
+        {
+            Field field = this.getFieldFromName( request, FIELD_NAME_EMAIL );
+            if ( StringUtils.isEmpty( field.getValue( ) ) )
+            {
+                field.setValue( luteceUser.getUserInfo( AppPropertiesService
+                        .getProperty( Constants.PROPERTY_LUTECE_USER_EMAIL ) ) );
+            }
+        }
+        return super.displayForm( request );
     }
 }

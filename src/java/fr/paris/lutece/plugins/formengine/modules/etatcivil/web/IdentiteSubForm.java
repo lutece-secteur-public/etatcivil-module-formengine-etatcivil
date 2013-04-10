@@ -65,13 +65,14 @@ public class IdentiteSubForm extends SubForm
     /**
      *
      */
-    public IdentiteSubForm(  )
+    public IdentiteSubForm( )
     {
-        super(  );
+        super( );
     }
 
     /**
-     * @see fr.paris.lutece.plugins.formengine.web.SubForm#doAction(java.lang.String, javax.servlet.http.HttpServletRequest)
+     * @see fr.paris.lutece.plugins.formengine.web.SubForm#doAction(java.lang.String,
+     *      javax.servlet.http.HttpServletRequest)
      */
     public String doAction( String strActionName, HttpServletRequest request )
     {
@@ -79,7 +80,7 @@ public class IdentiteSubForm extends SubForm
 
         if ( strActionName == null )
         {
-            strNextSubForm = this.getName(  );
+            strNextSubForm = this.getName( );
         }
         else if ( strActionName.equals( Constants.ACTION_NAME_NEXT ) )
         {
@@ -87,29 +88,29 @@ public class IdentiteSubForm extends SubForm
 
             if ( bValid )
             {
-                strNextSubForm = this.getNextSubForm(  ).getName(  );
-                this.getParentForm(  ).setIsAccessToSubFormAllowed( request, strNextSubForm, true );
+                strNextSubForm = this.getNextSubForm( ).getName( );
+                this.getParentForm( ).setIsAccessToSubFormAllowed( request, strNextSubForm, true );
             }
             else
             {
-                strNextSubForm = this.getName(  );
+                strNextSubForm = this.getName( );
             }
         }
         else if ( strActionName.equals( Constants.ACTION_NAME_PREVIOUS ) )
         {
             this.fillFields( request );
-            strNextSubForm = this.getPreviousSubForm(  ).getName(  );
+            strNextSubForm = this.getPreviousSubForm( ).getName( );
         }
         else
         {
-            strNextSubForm = this.getName(  );
+            strNextSubForm = this.getName( );
         }
 
         return strNextSubForm;
     }
 
     /**
-     *
+     * 
      * @param request
      * @return
      */
@@ -126,45 +127,45 @@ public class IdentiteSubForm extends SubForm
         if ( bValid )
         {
             // create the ObjectFactory
-            ObjectFactory factory = new ObjectFactory(  );
+            ObjectFactory factory = new ObjectFactory( );
 
             // retrieve the root element in session
             DemandeEtatCivil demandeEtatCivil;
-            demandeEtatCivil = (DemandeEtatCivil) getParentForm(  ).getFormDocument( request );
+            demandeEtatCivil = (DemandeEtatCivil) getParentForm( ).getFormDocument( request );
 
             if ( demandeEtatCivil == null )
             {
-                demandeEtatCivil = factory.createDemandeEtatCivil(  );
+                demandeEtatCivil = factory.createDemandeEtatCivil( );
             }
 
-            EvenementType evenement = demandeEtatCivil.getEvenement(  );
+            EvenementType evenement = demandeEtatCivil.getEvenement( );
 
             if ( evenement == null )
             {
-                evenement = factory.createEvenementType(  );
+                evenement = factory.createEvenementType( );
             }
 
             IndividuType interesse;
-            interesse = evenement.getInteresse(  );
+            interesse = evenement.getInteresse( );
 
             if ( interesse == null )
             {
-                interesse = factory.createIndividuType(  );
+                interesse = factory.createIndividuType( );
             }
 
-            NomsType noms = factory.createNomsType(  );
+            NomsType noms = factory.createNomsType( );
             Field fieldNom = this.getFieldFromName( request, FIELD_NAME_LAST_NAME );
-            noms.setNomDeFamille( fieldNom.getValue(  ) );
+            noms.setNomDeFamille( fieldNom.getValue( ) );
             interesse.setNoms( noms );
 
             Field fieldPrenom = this.getFieldFromName( request, FIELD_NAME_FIRST_NAME );
-            interesse.setPrenoms( fieldPrenom.getValue(  ) );
+            interesse.setPrenoms( fieldPrenom.getValue( ) );
 
             Field fieldSexe = this.getFieldFromName( request, FIELD_NAME_SEX );
-            String strSexe = fieldSexe.getValue(  );
+            String strSexe = fieldSexe.getValue( );
 
             // warning: if strSexe not possible value, IllegalArgumentException is thrown
-            if ( ( strSexe != null ) && ( !strSexe.trim(  ).equals( "" ) ) )
+            if ( ( strSexe != null ) && ( !strSexe.trim( ).equals( "" ) ) )
             {
                 interesse.setSexe( SexeType.fromValue( strSexe ) );
             }
@@ -172,27 +173,27 @@ public class IdentiteSubForm extends SubForm
             evenement.setInteresse( interesse );
 
             IndividuType conjoint;
-            conjoint = evenement.getConjoint(  );
+            conjoint = evenement.getConjoint( );
 
             if ( conjoint == null )
             {
-                conjoint = factory.createIndividuType(  );
+                conjoint = factory.createIndividuType( );
             }
 
             Field fieldNomConjoint = this.getFieldFromName( request, FIELD_NAME_LAST_NAME_CONSORT );
             Field fieldPrenomConjoint = this.getFieldFromName( request, FIELD_NAME_FIRST_NAME_CONSORT );
 
-            if ( ( fieldNomConjoint != null ) || ( fieldPrenomConjoint != null ) )
+            if ( ( fieldNomConjoint != null ) && ( fieldPrenomConjoint != null ) )
             {
-                NomsType nomsConjoint = factory.createNomsType(  );
-                nomsConjoint.setNomDeFamille( fieldNomConjoint.getValue(  ) );
+                NomsType nomsConjoint = factory.createNomsType( );
+                nomsConjoint.setNomDeFamille( fieldNomConjoint.getValue( ) );
                 conjoint.setNoms( nomsConjoint );
-                conjoint.setPrenoms( fieldPrenomConjoint.getValue(  ) );
+                conjoint.setPrenoms( fieldPrenomConjoint.getValue( ) );
                 evenement.setConjoint( conjoint );
             }
 
             demandeEtatCivil.setEvenement( evenement );
-            this.getParentForm(  ).setFormDocument( request, demandeEtatCivil );
+            this.getParentForm( ).setFormDocument( request, demandeEtatCivil );
         }
 
         return bValid;
@@ -209,24 +210,47 @@ public class IdentiteSubForm extends SubForm
     /**
      * @see fr.paris.lutece.plugins.formengine.web.SubForm#getXslFormElementsFileName()
      */
-    protected String getXslFormElementsFileName(  )
+    protected String getXslFormElementsFileName( )
     {
         return AppPropertiesService.getProperty( Constants.SHARED_PROPERTY_PREFIX + PROPERTY_FRAGMENT_XSL_FILE_FORM );
     }
 
     protected String displayHeader( HttpServletRequest request )
     {
-        HtmlTemplate templateMenu = AppTemplateService.getTemplate( AppPropertiesService.getProperty( getParentForm(  )
-                                                                                                          .getName(  ) +
-                    PROPERTY_FRAGMENT_TEMPLATE_MENU_HEADER ) );
+        HtmlTemplate templateMenu = AppTemplateService.getTemplate( AppPropertiesService.getProperty( getParentForm( )
+                .getName( ) + PROPERTY_FRAGMENT_TEMPLATE_MENU_HEADER ) );
 
-        HtmlTemplate template = AppTemplateService.getTemplate( AppPropertiesService.getProperty( getParentForm(  )
-                                                                                                      .getName(  ) +
-                    PROPERTY_FRAGMENT_TEMPLATE_HEADER_IDENTITE ) );
-        template.substitute( Constants.BOOKMARK_FORM_TITLE, this.getParentForm(  ).getTitle(  ) );
-        template.substitute( Constants.BOOKMARK_SUBFORM_TITLE, this.getTitle(  ) );
-        template.substitute( Constants.BOOKMARK_MENU_HEADER, templateMenu.getHtml(  ) );
+        HtmlTemplate template = AppTemplateService.getTemplate( AppPropertiesService.getProperty( getParentForm( )
+                .getName( ) + PROPERTY_FRAGMENT_TEMPLATE_HEADER_IDENTITE ) );
+        template.substitute( Constants.BOOKMARK_FORM_TITLE, this.getParentForm( ).getTitle( ) );
+        template.substitute( Constants.BOOKMARK_SUBFORM_TITLE, this.getTitle( ) );
+        template.substitute( Constants.BOOKMARK_MENU_HEADER, templateMenu.getHtml( ) );
 
-        return template.getHtml(  );
+        return template.getHtml( );
     }
+
+    //    /**
+    //     * {@inheritDoc}
+    //     */
+    //    @Override
+    //    protected String displayForm( final HttpServletRequest request )
+    //    {
+    //        LuteceUser luteceUser = SecurityService.getInstance( ).getRegisteredUser( request );
+    //        if ( luteceUser != null )
+    //        {
+    //            Field field = this.getFieldFromName( request, FIELD_NAME_FIRST_NAME );
+    //            if ( StringUtils.isEmpty( field.getValue( ) ) )
+    //            {
+    //                field.setValue( luteceUser.getUserInfo( AppPropertiesService
+    //                        .getProperty( Constants.PROPERTY_LUTECE_USER_FIRST_NAME ) ) );
+    //            }
+    //            field = this.getFieldFromName( request, FIELD_NAME_LAST_NAME );
+    //            if ( StringUtils.isEmpty( field.getValue( ) ) )
+    //            {
+    //                field.setValue( luteceUser.getUserInfo( AppPropertiesService
+    //                        .getProperty( Constants.PROPERTY_LUTECE_USER_LAST_NAME ) ) );
+    //            }
+    //        }
+    //        return super.displayForm( request );
+    //    }
 }
