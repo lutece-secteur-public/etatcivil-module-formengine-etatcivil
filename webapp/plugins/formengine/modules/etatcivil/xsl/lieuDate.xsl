@@ -7,6 +7,8 @@
  <xsl:template match="formElements">
   
      <xsl:call-template name="mandatory-notice" />
+     
+     <xsl:apply-templates select="notices" /> 
 
      <fieldset class="formengine-fieldset">
           <legend>Mairie d'arrondissement où est détenu l'acte demandé :</legend>
@@ -35,8 +37,6 @@
           <xsl:apply-templates select="fields/field[@name='fourchetteDateActe']"/>
           <xsl:apply-templates select="fields/field[@name='momentReconnaissance']"/>
      </fieldset>
-     
-     <xsl:apply-templates select="notices" /> 
      
      <div class="formengine-steps">
           <xsl:apply-templates select="buttons/button[@name='Etape suivante']"/>

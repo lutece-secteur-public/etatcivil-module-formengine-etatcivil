@@ -9,18 +9,18 @@
    <xsl:call-template name="mandatory-notice" />
 
   <fieldset class="formengine-fieldset">
-      <legend class="formengine-legend">Spécifier les informations complémentaires :</legend>
-
-       <xsl:call-template name="field-list"/>
-
-   </fieldset>
-
-  <fieldset class="formengine-fieldset">
       <legend class="formengine-legend">Remarques :</legend>
 
      <xsl:call-template name="notice-list"/>
 
     </fieldset>
+
+  <fieldset class="formengine-fieldset">
+      <legend class="formengine-legend">Spécifier les informations complémentaires :</legend>
+
+       <xsl:call-template name="field-list"/>
+
+   </fieldset>
 
    <div class="formengine-steps">
           <xsl:call-template name="button-list"/>

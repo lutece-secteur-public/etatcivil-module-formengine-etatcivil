@@ -95,7 +95,7 @@
     <field type="text" name="nom">
      <label>Nom</label>
      <value/>
-     <additionalInfo>Nom de jeune fille pour une femme mariée</additionalInfo>
+     <additionalInfo>Nom de naissance pour une femme mariée</additionalInfo>
      <checkFieldRules>
       <checkRule type="fieldRequired" parameter="true"/>
       <checkRule type="maxLength" parameter="200"/>
@@ -123,7 +123,7 @@
     <field type="text" name="nomConjoint">
      <label>Nom du conjoint</label>
      <value/>
-     <additionalInfo>Nom de jeune fille pour une femme mariée</additionalInfo>
+     <additionalInfo>Nom de naissance pour une femme mariée</additionalInfo>
      <checkFieldRules>
       <checkRule type="maxLength" parameter="200"/>
       <checkRule type="xss"/>
@@ -216,7 +216,7 @@
     <field type="text" name="nomMere">
      <label>Nom de la mère</label>
      <value/>
-     <additionalInfo>Nom de jeune fille pour une femme mariée</additionalInfo>
+     <additionalInfo>Nom de naissance pour une femme mariée</additionalInfo>
       <checkFieldRules>
        <checkRule type="maxLength" parameter="200"/>
        <checkRule type="xss"/>

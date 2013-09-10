@@ -6,8 +6,10 @@
  <xsl:template match="formElements">
 
     <xsl:call-template name="mandatory-notice" />
+     
+     <xsl:apply-templates select="notices" /> 
 
-  <fieldset class="formengine-fieldset">
+    <fieldset class="formengine-fieldset">
       <legend class="formengine-legend">Spécifier les coordonnées du demandeur :</legend>
 
        <xsl:apply-templates select="fields/field[@name='civilite']"/>
@@ -27,9 +29,19 @@
 
    </fieldset>
 
-   <div class="formengine-steps">
+        <div class="formengine-steps">
             <xsl:call-template name="button-list"/>
-    </div>
+        </div>
 
- </xsl:template>
+    </xsl:template>
+
+      <!-- redefinition of template -->
+     <xsl:template match="noticeGroup[@name='informations']" mode="no-bullet" >
+        <fieldset class="formengine-fieldset">
+            <legend class="formengine-legend">Informations :</legend>
+            <p>
+                <xsl:apply-templates select="notice" mode="no-bullet"/>
+            </p>
+       </fieldset>
+    </xsl:template>
 </xsl:stylesheet>

@@ -125,7 +125,7 @@
                     <field type="text" name="nomMere">
                         <label>Nom de la mère</label>
                         <value/>
-                        <additionalInfo>Nom de jeune fille pour une femme mariée</additionalInfo>
+                        <additionalInfo>Nom de naissance pour une femme mariée</additionalInfo>
                         <checkFieldRules>
                          <checkRule type="maxLength" parameter="200"/>
                          <checkRule type="xss"/>
