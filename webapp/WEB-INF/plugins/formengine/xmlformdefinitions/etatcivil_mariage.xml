@@ -168,15 +168,36 @@
       <label>Type d'acte demandé</label>
      <value/>
      <choiceList>
-      <choice label="Une copie intégrale de l'acte" value="CPI"/>
-       <choice label="Un extrait d'acte avec filiation" value="EXTAF"/>
-       <choice label="Un extrait d'acte sans filiation" value="EXTSF"/>
-       <choice label="Un extrait plurilingue" value="EXTPL"/>
+      <choice label="Une copie intégrale de l'acte" value="CPI" />
+       <choice label="Un extrait d'acte avec filiation" value="EXTAF" />
+       <choice label="Un extrait d'acte sans filiation" value="EXTSF" />
+       <choice label="Un extrait plurilingue" value="EXTPL" />
      </choiceList>
      <checkFieldRules>
       <checkRule type="fieldRequired" parameter="true"/>
      </checkFieldRules>
     </field>
+         <field type="text" name="infoActes">
+        <label>
+            <![CDATA[
+            <ul>
+            <li>
+            Une copie intégrale est une reproduction de l'acte original, mentions marginales comprises.
+            </li>
+            <li>
+            Un extrait avec filiation regroupe l'identité de l'intéressé, de ses parents et les dernières mentions concernant sa vie et sa situation familiale (décès, dernier mariage, divorce, ...).
+            </li>
+            <li>
+            Un extrait sans filiation ne contient pas les noms et prénoms des parents de l'intéressé. Toute personne peut obtenir un extrait sans filiation d'acte de mariage.
+            </li>
+            <li>
+            Un extrait plurilingue est un extrait d'acte d'état civil destiné à être utilisé à l'étranger.
+            </li>
+            </ul>
+            ]]>
+        </label>
+     </field>
+    
    </fields>
     <buttons>
      <button name="Etape precedente" type="submit"/>
