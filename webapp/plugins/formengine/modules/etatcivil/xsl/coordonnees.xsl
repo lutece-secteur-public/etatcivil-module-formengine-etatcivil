@@ -4,12 +4,12 @@
  <xsl:include href="../../../xsl/formelements.xsl"/>
 
  <xsl:template match="formElements">
-
-    <xsl:call-template name="mandatory-notice" />
-     
+    <div class="span11">
+        <xsl:call-template name="mandatory-notice" />
+    </div>
      <xsl:apply-templates select="notices" /> 
 
-    <fieldset class="formengine-fieldset">
+    <fieldset class="span11 formengine-fieldset">
       <legend class="formengine-legend">Spécifier les coordonnées du demandeur :</legend>
 
        <xsl:apply-templates select="fields/field[@name='civilite']"/>
@@ -21,7 +21,7 @@
 
     </fieldset>
 
-  <fieldset class="formengine-fieldset">
+  <fieldset class="span11 formengine-fieldset">
       <legend class="formengine-legend">Si l'adresse du demandeur est à l’étranger :</legend>
 
        <xsl:apply-templates select="fields/field[@name='pays']"/>
@@ -35,13 +35,11 @@
 
     </xsl:template>
 
-      <!-- redefinition of template -->
-     <xsl:template match="noticeGroup[@name='informations']" mode="no-bullet" >
-        <fieldset class="formengine-fieldset">
+    <xsl:template match="notices">
+        <fieldset class="span11 formengine-fieldset">
             <legend class="formengine-legend">Informations :</legend>
-            <p>
-                <xsl:apply-templates select="notice" mode="no-bullet"/>
-            </p>
-       </fieldset>
+            <xsl:apply-templates select="noticeGroup" />
+        </fieldset>
     </xsl:template>
+
 </xsl:stylesheet>

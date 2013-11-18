@@ -5,17 +5,17 @@
 
  <xsl:template match="formElements">
 
-
-   <xsl:call-template name="mandatory-notice" />
-
-  <fieldset class="formengine-fieldset">
+    <div class="span11">
+        <xsl:call-template name="mandatory-notice" />
+    </div>
+  <fieldset class="span11 formengine-fieldset">
       <legend class="formengine-legend">Remarques :</legend>
 
      <xsl:call-template name="notice-list"/>
 
     </fieldset>
 
-  <fieldset class="formengine-fieldset">
+  <fieldset class="span11 formengine-fieldset">
         <legend class="formengine-legend">Spécifier les informations complémentaires :</legend>
         <fieldset class="formengine-fieldset" style="margin-top:0px;">
             <legend class="formengine-legend">Avertissement :</legend>
@@ -30,7 +30,12 @@
    <div class="formengine-steps">
           <xsl:call-template name="button-list"/>
   </div>
-
-
  </xsl:template>
+ 
+ 
+  <xsl:template match="additionalInfo">
+                <span class="formengine-additionnal-info">
+                    <xsl:value-of select="."/>
+                </span>
+    </xsl:template>
 </xsl:stylesheet>

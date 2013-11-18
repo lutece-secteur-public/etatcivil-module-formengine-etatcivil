@@ -6,16 +6,17 @@
   
  <xsl:template match="formElements">
   
+    <div class="span11">
      <xsl:call-template name="mandatory-notice" />
-     
+     </div>
      <xsl:apply-templates select="notices" /> 
 
-     <fieldset class="formengine-fieldset">
+     <fieldset class="span11 formengine-fieldset">
           <legend>Mairie d'arrondissement où est détenu l'acte demandé :</legend>
           <xsl:apply-templates select="fields/field[@name='mairieActe']"/>  
      </fieldset>
      
-     <fieldset class="formengine-fieldset">
+     <fieldset class="span11 formengine-fieldset">
           <legend>Date de l'acte :</legend>  
           <div class="formengine-element">
 	    		<span class="formengine-label">
@@ -27,18 +28,18 @@
 					<xsl:apply-templates select="fields/field[@name='dateActeJour']/additionalInfo"/>
 				</span>
 			 	<span class="formengine-field" >
-					<input type="text" name="{fields/field[@name='dateActeJour']/@name}" id="{fields/field[@name='dateActeJour']/@name}" value="{fields/field[@name='dateActeJour']/value}" size="1"/>
+					<input type="text" class="small" name="{fields/field[@name='dateActeJour']/@name}" id="{fields/field[@name='dateActeJour']/@name}" value="{fields/field[@name='dateActeJour']/value}" size="1"/>
 					<xsl:text> / </xsl:text>
-					<input type="text" name="{fields/field[@name='dateActeMois']/@name}" id="{fields/field[@name='dateActeMois']/@name}" value="{fields/field[@name='dateActeMois']/value}" size="1"/>
+					<input type="text" class="small" name="{fields/field[@name='dateActeMois']/@name}" id="{fields/field[@name='dateActeMois']/@name}" value="{fields/field[@name='dateActeMois']/value}" size="1"/>
 					<xsl:text> / </xsl:text>
-					<input type="text" name="{fields/field[@name='dateActeAnnee']/@name}" id="{fields/field[@name='dateActeAnnee']/@name}" value="{fields/field[@name='dateActeAnnee']/value}" size="3"/>
+					<input type="text" class="medium" name="{fields/field[@name='dateActeAnnee']/@name}" id="{fields/field[@name='dateActeAnnee']/@name}" value="{fields/field[@name='dateActeAnnee']/value}" size="3"/>
 				</span>
 		  </div>          
           <xsl:apply-templates select="fields/field[@name='fourchetteDateActe']"/>
           <xsl:apply-templates select="fields/field[@name='momentReconnaissance']"/>
      </fieldset>
      
-     <fieldset class="formengine-fieldset">
+     <fieldset class="span11 formengine-fieldset">
           <legend>Remarques :</legend>  
           <ul>
             <li>Seuls les actes enregistrés à Paris peuvent être délivrés. Si la naissance a eu lieu dans une autre commune, veuillez consulter <a target="\_blank" href="https://www.acte-naissance.fr/DemandeActe/Accueil.do">service-public.fr</a>.</li>
@@ -59,10 +60,15 @@
  
  
  <xsl:template match="notices" >
-      <fieldset class="formengine-fieldset">
+      <fieldset class="span11 formengine-fieldset">
           <legend>Informations :</legend>
           <xsl:call-template name="notice-list" />
       </fieldset>    
  </xsl:template>
-  
+ 
+  <xsl:template match="additionalInfo">
+                <span class="formengine-additionnal-info">
+                    <xsl:value-of select="."/>
+                </span>
+    </xsl:template>
 </xsl:stylesheet>

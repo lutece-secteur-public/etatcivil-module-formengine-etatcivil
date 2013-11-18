@@ -6,7 +6,7 @@
  <xsl:template match="formElements">
 
 
-  <fieldset class="formengine-fieldset">
+  <fieldset class="span11 formengine-fieldset">
       <legend class="formengine-legend">Spécifier l'état civil du père de la personne dont l'acte est demandé :</legend>
 
         <xsl:apply-templates select="fields/field[@name='nomPere']"/>
@@ -14,7 +14,7 @@
 
     </fieldset>
 
-  <fieldset class="formengine-fieldset">
+  <fieldset class="span11 formengine-fieldset">
       <legend class="formengine-legend">Spécifier l'état civil de la mère de la personne dont l'acte est demandé :</legend>
 
        <xsl:apply-templates select="fields/field[@name='nomMere']"/>
@@ -28,4 +28,10 @@
 
 
  </xsl:template>
+ 
+  <xsl:template match="additionalInfo">
+     <span class="formengine-additionnal-info">
+         <xsl:value-of select="."/>
+     </span>
+    </xsl:template>
 </xsl:stylesheet>
