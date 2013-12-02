@@ -4,13 +4,13 @@
  <xsl:include href="../../../xsl/formelements.xsl"/>
 
  <xsl:template match="formElements">
-    <div class="span11">
+    <div>
         <xsl:call-template name="mandatory-notice" />
     </div>
      <xsl:apply-templates select="notices" /> 
 
-    <fieldset class="span11 formengine-fieldset">
-      <legend class="formengine-legend">Spécifier les coordonnées du demandeur :</legend>
+    <div class="well">
+      <p class="title">Spécifier les coordonnées du demandeur :</p>
 
        <xsl:apply-templates select="fields/field[@name='civilite']"/>
        <xsl:apply-templates select="fields/field[@name='nom']"/>
@@ -19,27 +19,25 @@
        <xsl:apply-templates select="fields/field[@name='codePostal']"/>
        <xsl:apply-templates select="fields/field[@name='ville']"/>
 
-    </fieldset>
+    </div>
 
-  <fieldset class="span11 formengine-fieldset">
-      <legend class="formengine-legend">Si l'adresse du demandeur est à l’étranger :</legend>
+  <div class="well">
+      <p class="title">Si l'adresse du demandeur est à l’étranger :</p>
 
        <xsl:apply-templates select="fields/field[@name='pays']"/>
        <xsl:apply-templates select="fields/field[@name='province']"/>
+   </div>
 
-   </fieldset>
-
-        <div class="formengine-steps">
-            <xsl:call-template name="button-list"/>
-        </div>
-
-    </xsl:template>
+   <div class="formengine-steps">
+       <xsl:call-template name="button-list"/>
+   </div>
+</xsl:template>
 
     <xsl:template match="notices">
-        <fieldset class="span11 formengine-fieldset">
-            <legend class="formengine-legend">Informations :</legend>
+        <div class="well">
+            <p class="title">Informations :</p>
             <xsl:apply-templates select="noticeGroup" />
-        </fieldset>
+        </div>
     </xsl:template>
 
 </xsl:stylesheet>

@@ -6,11 +6,11 @@
 
     <xsl:template match="formElements">
 
-  <fieldset class="formengine-fieldset">
-      <legend class="formengine-legend"></legend>
+  <div class="well">
+      <p class="title"></p>
          <xsl:apply-templates select="notices/noticeGroup" />
 
-    </fieldset>
+    </div>
      <xsl:apply-templates select="buttons/button[@name='OK']"/>
     </xsl:template>
 

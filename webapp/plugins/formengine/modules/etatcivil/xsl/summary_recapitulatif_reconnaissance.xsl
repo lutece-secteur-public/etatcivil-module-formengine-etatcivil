@@ -5,8 +5,8 @@
 
  <xsl:template match="demandeEtatCivil">
 
-  <fieldset class="formengine-fieldset">
-      <legend class="formengine-legend">Récapitulatif des informations saisies</legend>
+  <div class="well">
+      <p class="title">Récapitulatif des informations saisies</p>
     <p>
     <h3>Lieu et date de l'acte :</h3>
         <xsl:apply-templates select="evenement" />
@@ -62,7 +62,7 @@
         </ul>
     </p>
 
-   </fieldset>
+   </div>
 
  </xsl:template>
 

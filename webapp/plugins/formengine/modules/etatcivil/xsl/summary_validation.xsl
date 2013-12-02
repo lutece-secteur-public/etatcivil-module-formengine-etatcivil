@@ -8,11 +8,10 @@
  </xsl:template>
 
 
-
  <xsl:template match="evenement">
 
-  <fieldset class="formengine-fieldset">
-      <legend class="formengine-legend">Validation des informations saisies</legend>
+  <div class="well">
+      <p class="title">Validation des informations saisies</p>
 
      <xsl:choose>
          <xsl:when test="lieuEvenement/ville=''">
@@ -52,7 +51,7 @@
          </xsl:otherwise>
 
      </xsl:choose>
-  </fieldset>
+  </div>
 
 
 

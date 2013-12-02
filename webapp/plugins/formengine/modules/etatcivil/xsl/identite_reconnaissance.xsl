@@ -10,8 +10,8 @@
 
    <xsl:call-template name="mandatory-notice" />
 
-   <fieldset class="formengine-fieldset">
-    <legend class="formengine-legend"> Spécifier l'identité du ou des auteurs de la reconnaissance :</legend>
+   <div class="formengine-fieldset">
+    <p class="title">Spécifier l'identité du ou des auteurs de la reconnaissance :</p>
 
      <xsl:apply-templates select="fields/field[@name='nomMere']"/>
      <xsl:apply-templates select="fields/field[@name='prenomMere']"/>
@@ -20,15 +20,15 @@
      <xsl:apply-templates select="fields/field[@name='nomPere']"/>
      <xsl:apply-templates select="fields/field[@name='prenomPere']"/>
 		<xsl:text>Le nom et le prénom du père OU de la mère doivent être spécifiés. </xsl:text>
-     </fieldset>
+     </div>
 
 
     <xsl:if test="$showChildFields" >
-     <fieldset class="formengine-fieldset">
-     <legend class="formengine-legend">Spécifier l'identité de l'enfant reconnu :</legend>
+     <div class="formengine-fieldset">
+     <p class="title">Spécifier l'identité de l'enfant reconnu :</p>
      <xsl:apply-templates select="fields/field[@name='nom']"/>
      <xsl:apply-templates select="fields/field[@name='prenom']"/>
-     </fieldset>
+     </div>
     </xsl:if>
 
      <fieldset class="formengine-fieldset">

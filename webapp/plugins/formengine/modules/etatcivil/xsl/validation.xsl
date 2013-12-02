@@ -10,10 +10,10 @@
     </div>
 
 
-  <fieldset class="formengine-fieldset">
-    <legend class="formengine-legend">Informations complementaires</legend>
+  <div class="well">
+    <p class="well">Informations complementaires</p>
       <xsl:call-template name="notice-list"/>
-    </fieldset>
+    </div>
 
     <div class="formengine-steps">
       <xsl:apply-templates select="buttons/button[@name='Confirmer']"/>

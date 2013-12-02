@@ -4,19 +4,19 @@
  <xsl:include href="../../../xsl/formelements.xsl"/>
 
  <xsl:template match="formElements">
-    <div class="span11">
+    <div>
         <xsl:call-template name="mandatory-notice" />
     </div>
-  <fieldset class="span11 formengine-fieldset">
-      <legend class="formengine-legend">Type d'acte demandé :</legend>
+  <div class="well">
+      <p class="title">Type d'acte demandé :</p>
         <xsl:apply-templates select="fields/field[@name='typeActe']"/>
         <xsl:apply-templates select="fields/field[@name='infoActes']"/>
-    </fieldset>
+    </div>
 
-  <fieldset class="span11 formengine-fieldset">
-      <legend class="formengine-legend">Nombre d'actes demandés :</legend>
+    <div class="well">
+      <p class="title">Nombre d'actes demandés :</p>
      <xsl:apply-templates select="fields/field[@name='nombreActes']"/>
-     </fieldset>
+     </div>
 
      <xsl:apply-templates select="notices" />
 
@@ -27,8 +27,8 @@
      </xsl:template>
 
     <xsl:template match="notices">
-        <fieldset class="span11 formengine-fieldset">
-            <legend class="formengine-legend">Informations :</legend>
+        <fieldset class="well">
+            <p class="title">Informations :</p>
             <xsl:apply-templates select="noticeGroup" />
         </fieldset>
     </xsl:template>

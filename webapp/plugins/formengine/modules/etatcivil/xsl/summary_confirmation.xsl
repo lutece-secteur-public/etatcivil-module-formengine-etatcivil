@@ -3,14 +3,14 @@
 
  <xsl:template match="demandeEtatCivil">
 
-  <fieldset class="formengine-fieldset">
-      <legend class="formengine-legend">Confirmation</legend>
+  <div class="well">
+      <p class="title">Confirmation</p>
    Votre demande nous a bien été transmise sous le numéro :
     <strong><xsl:value-of  select="identifiant" /></strong>.
 
     <br/><br/>
     Si vous avez indiqué votre adresse mèl, vous recevrez un accusé de réception de la demande.
-   </fieldset>
+   </div>
 
 
  </xsl:template>

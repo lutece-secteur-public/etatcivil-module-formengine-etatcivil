@@ -6,18 +6,18 @@
   
  <xsl:template match="formElements">
   
-    <div class="span11">
+    <div>
      <xsl:call-template name="mandatory-notice" />
      </div>
      <xsl:apply-templates select="notices" /> 
 
-     <fieldset class="span11 formengine-fieldset">
-          <legend>Mairie d'arrondissement où est détenu l'acte demandé :</legend>
+     <div class="well">
+          <p class="title">Mairie d'arrondissement où est détenu l'acte demandé :</p>
           <xsl:apply-templates select="fields/field[@name='mairieActe']"/>  
-     </fieldset>
+     </div>
      
-     <fieldset class="span11 formengine-fieldset">
-          <legend>Date de l'acte :</legend>  
+     <div class="well">
+          <p class="title">Date de l'acte :</p>  
           <div class="formengine-element">
 	    		<span class="formengine-label">
 					<label for="{fields/field[@name='dateActeJour']/@name}">
@@ -37,10 +37,10 @@
 		  </div>          
           <xsl:apply-templates select="fields/field[@name='fourchetteDateActe']"/>
           <xsl:apply-templates select="fields/field[@name='momentReconnaissance']"/>
-     </fieldset>
+     </div>
      
-     <fieldset class="span11 formengine-fieldset">
-          <legend>Remarques :</legend>  
+     <div class="well">
+          <p class="title">Remarques :</p>  
           <ul>
             <li>Seuls les actes enregistrés à Paris peuvent être délivrés. Si la naissance a eu lieu dans une autre commune, veuillez consulter <a target="\_blank" href="https://www.acte-naissance.fr/DemandeActe/Accueil.do">service-public.fr</a>.</li>
             <li>
@@ -50,7 +50,7 @@
             <li>Les notaires, les avocats, les représentants légaux et les administrations spécifiquement autorisées qui peuvent avoir accès aux actes de l'état civil de la personne qui leur a donné mandat sont invités à formuler leur demande de copie intégrale ou d'extrait avec filiation de naissance par courrier et non par internet, compte tenu de la nécessité de produire un justificatif. 
             </li>
         </ul>
-     </fieldset>
+     </div>
      
      <div class="formengine-steps">
           <xsl:apply-templates select="buttons/button[@name='Etape suivante']"/>
@@ -58,12 +58,11 @@
  
  </xsl:template>
  
- 
  <xsl:template match="notices" >
-      <fieldset class="span11 formengine-fieldset">
-          <legend>Informations :</legend>
+      <div class="well">
+          <p class="title">Informations :</p>
           <xsl:call-template name="notice-list" />
-      </fieldset>    
+      </div>    
  </xsl:template>
  
   <xsl:template match="additionalInfo">
