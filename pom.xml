@@ -9,7 +9,7 @@
 	<groupId>fr.paris.lutece.plugins</groupId>
 	<artifactId>module-formengine-etatcivil</artifactId>
 	<packaging>lutece-plugin</packaging>
-	<version>2.0.23-SNAPSHOT</version>
+	<version>2.0.23</version>
 	<name>Lutece formengine etat-civil module</name>
 	
 	<repositories>
@@ -65,8 +65,8 @@
 	</properties>
 	
 	<scm>
-        <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/applications/teleservices/trunk/module-formengine-etatcivil</connection>
-        <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/applications/teleservices/trunk/module-formengine-etatcivil</developerConnection>
-        <url>http://dev.lutece.paris.fr/viewvc/lutece/applications/teleservices/trunk/module-formengine-etatcivil</url>
+        <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/applications/teleservices/tags/module-formengine-etatcivil-2.0.23</connection>
+        <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/applications/teleservices/tags/module-formengine-etatcivil-2.0.23</developerConnection>
+        <url>http://dev.lutece.paris.fr/viewvc/lutece/applications/teleservices/tags/module-formengine-etatcivil-2.0.23</url>
     </scm>
 </project>
