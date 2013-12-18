@@ -26,13 +26,6 @@
 
      </xsl:template>
 
-    <xsl:template match="notices">
-        <fieldset class="well">
-            <p class="title">Informations :</p>
-            <xsl:apply-templates select="noticeGroup" />
-        </fieldset>
-    </xsl:template>
-     
      <!-- redefinition of template -->
      <xsl:template match="field[@name='infoActes']">
          <xsl:value-of select="label" disable-output-escaping="yes"/>

@@ -58,13 +58,6 @@
  
  </xsl:template>
  
- <xsl:template match="notices" >
-      <div class="well">
-          <p class="title">Informations :</p>
-          <xsl:call-template name="notice-list" />
-      </div>    
- </xsl:template>
- 
   <xsl:template match="additionalInfo">
                 <span class="formengine-additionnal-info">
                     <xsl:value-of select="."/>

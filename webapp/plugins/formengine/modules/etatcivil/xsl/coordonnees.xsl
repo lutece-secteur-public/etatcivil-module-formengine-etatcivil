@@ -33,11 +33,4 @@
    </div>
 </xsl:template>
 
-    <xsl:template match="notices">
-        <div class="well">
-            <p class="title">Informations :</p>
-            <xsl:apply-templates select="noticeGroup" />
-        </div>
-    </xsl:template>
-
 </xsl:stylesheet>
