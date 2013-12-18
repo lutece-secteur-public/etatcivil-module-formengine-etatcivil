@@ -39,12 +39,14 @@ import fr.paris.lutece.plugins.formengine.modules.etatcivil.service.output.EtatC
 //import fr.paris.lutece.plugins.formengine.modules.etatcivil.service.output.EtatCivilIdGenerator;
 import fr.paris.lutece.plugins.formengine.service.output.GeneratorFactory;
 import fr.paris.lutece.plugins.formengine.service.output.IdGenerator;
-import fr.paris.lutece.plugins.formengine.web.SubForm;
+import fr.paris.lutece.plugins.formengine.web.CaptchaSubForm;
 import fr.paris.lutece.portal.service.template.AppTemplateService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.util.html.HtmlTemplate;
 
 import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -53,7 +55,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * ValidationSubForm
  */
-public class ValidationSubForm extends SubForm
+public class ValidationSubForm extends CaptchaSubForm
 {
     private static final String PROPERTY_FRAGMENT_XSL_FILE_SUMMARY = ".xsl.file.summary.validation";
     private static final String PROPERTY_FRAGMENT_XSL_FILE_FORM = ".xsl.file.form.validation";
@@ -171,7 +173,8 @@ public class ValidationSubForm extends SubForm
 
         // generate html code via xsl transform
         String strFileName = AppPropertiesService.getProperty( getPropertyXSLFileSummary(  ) );
-        strHtml = this.getHtml( strXml, strFileName );
+        Map<String, Object> params = new HashMap<String, Object>();
+        strHtml = this.getHtml( strXml, strFileName, params );
 
         // reset temp values
         demandeEtatCivil.setDateDemande( null );

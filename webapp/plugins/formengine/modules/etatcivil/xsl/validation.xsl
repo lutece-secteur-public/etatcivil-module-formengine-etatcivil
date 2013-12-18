@@ -11,10 +11,15 @@
 
 
   <div class="well">
-    <p class="well">Informations complementaires</p>
+    <p class="title">Informations complementaires</p>
       <xsl:call-template name="notice-list"/>
     </div>
 
+	<div class="well">
+		<p class="title">Validation de votre demande</p>
+      <xsl:call-template name="captcha"/>
+    </div>
+    
     <div class="formengine-steps">
       <xsl:apply-templates select="buttons/button[@name='Confirmer']"/>
     </div>
