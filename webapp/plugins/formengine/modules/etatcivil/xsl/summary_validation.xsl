@@ -41,10 +41,8 @@
              Vous avez indiqué dans votre demande une date précise
               de l'événement et l'arrondissement concerné.
               Votre demande sera envoyée au service de l'état civil
-              de la mairie <xsl:value-of select="lieuEvenement/ville" />.
-              Votre demande sera traitée dans un délai de 72 heures
-              (hors week-end et jours fériés et non compris
-              les délais de poste).
+              de la mairie <xsl:value-of select="lieuEvenement/villeDisplay" /> et 
+              vous recevrez votre réponse au plus tard dans les 10 jours.
          </p>
 
 

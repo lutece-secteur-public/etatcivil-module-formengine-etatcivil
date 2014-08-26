@@ -44,7 +44,7 @@
           <ul>
             <li>Seuls les actes enregistrés à Paris peuvent être délivrés. Si la naissance a eu lieu dans une autre commune, veuillez consulter <a target="\_blank" href="https://www.acte-naissance.fr/DemandeActe/Accueil.do">service-public.fr</a>.</li>
             <li>
-                <p>Les actes d'état civil conservés par les mairies d'arrondissement ne concernent que la période postérieure à 1903. Si la naissance a eu lieu avant 1903, l'acte pourra être obtenu auprès des Archives départementales de Paris.</p>
+                <p>Les actes d'état civil conservés par les mairies d'arrondissement ne concernent que la période postérieure à 1903. Avant 1903, l'acte pourra être obtenu auprès des Archives départementales de Paris.</p>
                 <a target="\_blank" href="http://www.paris.fr/portail/Culture/Portal.lut?page_id=149">» Lien vers les archives de Paris</a>                 
             </li>
             <li>Les notaires, les avocats, les représentants légaux et les administrations spécifiquement autorisées qui peuvent avoir accès aux actes de l'état civil de la personne qui leur a donné mandat sont invités à formuler leur demande de copie intégrale ou d'extrait avec filiation de naissance par courrier et non par internet, compte tenu de la nécessité de produire un justificatif. 

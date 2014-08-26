@@ -157,6 +157,7 @@
 	<xs:complexType name="lieuType">
 		<xs:sequence>
 			<xs:element name="ville" type="xs:string"/>
+			<xs:element name="villeDisplay" type="xs:string" minOccurs="0"/>
 			<xs:element name="province" type="xs:string" minOccurs="0"/>
 			<xs:element name="pays" type="xs:string" minOccurs="0"/>
 		</xs:sequence>
