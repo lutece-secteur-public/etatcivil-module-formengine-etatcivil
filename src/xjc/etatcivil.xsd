@@ -135,6 +135,7 @@
 			</xs:element>
 			<xs:element name="dateEvenement" type="dateEvenementType"/>
 			<xs:element name="lieuEvenement" type="lieuType"/>
+			<xs:element name="natureReconnaissance" type="xs:string"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="nomsType">

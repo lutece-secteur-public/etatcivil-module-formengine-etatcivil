@@ -36,7 +36,7 @@
 
     </p>
 
-    <xsl:if test="not(evenement/interesse/noms/nomDeFamille='')">
+    <xsl:if test="not(evenement/interesse/noms/nomDeFamille='') and not(evenement/natureReconnaissance='0')">
       <p>
         <h3>Identité de la personne reconnue :</h3>
           <ul>

@@ -38,7 +38,7 @@
 
 	<xsl:apply-templates select="notices" />
    <div class="formengine-steps">
-       <xsl:apply-templates select="buttons/button[@name='Etape précédente']"/>
+       <xsl:apply-templates select="buttons/button[@name='Etape precedente']"/>
        <xsl:apply-templates select="buttons/button[@name='Etape suivante']"/>
     </div>
 

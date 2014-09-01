@@ -46,9 +46,9 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author lutecer
- *
- * TODO To change the template for this generated type comment go to
- * Window - Preferences - Java - Code Style - Code Templates
+ * 
+ *         TODO To change the template for this generated type comment go to
+ *         Window - Preferences - Java - Code Style - Code Templates
  */
 public class ReconnaissanceRecapitulatifSubForm extends SubForm
 {
@@ -60,13 +60,17 @@ public class ReconnaissanceRecapitulatifSubForm extends SubForm
     /**
      *
      */
-    public ReconnaissanceRecapitulatifSubForm(  )
+    public ReconnaissanceRecapitulatifSubForm( )
     {
-        super(  );
+        super( );
     }
 
-    /* (non-Javadoc)
-     * @see fr.paris.lutece.plugins.formengine.web.SubForm#doAction(java.lang.String, javax.servlet.http.HttpServletRequest)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * fr.paris.lutece.plugins.formengine.web.SubForm#doAction(java.lang.String,
+     * javax.servlet.http.HttpServletRequest)
      */
     public String doAction( String strActionName, HttpServletRequest request )
     {
@@ -74,44 +78,48 @@ public class ReconnaissanceRecapitulatifSubForm extends SubForm
 
         if ( strActionName == null )
         {
-            strNextSubForm = this.getName(  );
+            strNextSubForm = this.getName( );
         }
         else if ( strActionName.equals( Constants.ACTION_NAME_NEXT ) )
         {
-            strNextSubForm = this.getNextSubForm(  ).getName(  );
-            this.getParentForm(  ).setIsAccessToSubFormAllowed( request, strNextSubForm, true );
+            strNextSubForm = this.getNextSubForm( ).getName( );
+            this.getParentForm( ).setIsAccessToSubFormAllowed( request, strNextSubForm, true );
         }
         else if ( strActionName.equals( Constants.ACTION_NAME_PREVIOUS ) )
         {
-            strNextSubForm = this.getPreviousSubForm(  ).getName(  );
+            strNextSubForm = this.getPreviousSubForm( ).getName( );
         }
         else
         {
-            strNextSubForm = this.getName(  );
+            strNextSubForm = this.getName( );
         }
 
         return strNextSubForm;
     }
 
-    /* (non-Javadoc)
-     * @see fr.paris.lutece.plugins.formengine.web.SubForm#displaySummary(javax.servlet.http.HttpServletRequest)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * fr.paris.lutece.plugins.formengine.web.SubForm#displaySummary(javax.servlet
+     * .http.HttpServletRequest)
      */
     protected String displaySummary( HttpServletRequest request )
     {
         String strHtml = "";
 
         // get the data object in session
-        DemandeEtatCivil demandeEtatCivil = (DemandeEtatCivil) getParentForm(  ).getFormDocument( request );
+        DemandeEtatCivil demandeEtatCivil = (DemandeEtatCivil) getParentForm( ).getFormDocument( request );
 
         // set temp values to allow generation
-        demandeEtatCivil.setDateDemande( new GregorianCalendar(  ) );
+        demandeEtatCivil.setDateDemande( new GregorianCalendar( ) );
         demandeEtatCivil.setIdentifiant( "temp" );
 
         // generate xml
-        String strXml = getParentForm(  ).getXmlFormDocument( request );
+        String strXml = getParentForm( ).getXmlFormDocument( request );
 
         // generate html code via xsl transform
-        String strFileName = AppPropertiesService.getProperty( getPropertyXSLFileSummary(  ) );
+        String strFileName = AppPropertiesService.getProperty( getPropertyXSLFileSummary( ) );
         strHtml = this.getHtml( strXml, strFileName );
 
         // reset temp values
@@ -121,48 +129,50 @@ public class ReconnaissanceRecapitulatifSubForm extends SubForm
         return strHtml;
     }
 
-    /* (non-Javadoc)
-     * @see fr.paris.lutece.plugins.formengine.web.SubForm#getXslFormElementsFileName()
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * fr.paris.lutece.plugins.formengine.web.SubForm#getXslFormElementsFileName
+     * ()
      */
-    protected String getXslFormElementsFileName(  )
+    protected String getXslFormElementsFileName( )
     {
         return AppPropertiesService.getProperty( Constants.SHARED_PROPERTY_PREFIX + PROPERTY_FRAGMENT_XSL_FILE_FORM );
     }
 
-    
     /**
      * property for XSL display summary
      * @return xsl property
      */
-    private String getPropertyXSLFileSummary(  )
+    private String getPropertyXSLFileSummary( )
     {
-    	return Constants.SHARED_PROPERTY_PREFIX + PROPERTY_FRAGMENT_XSL_FILE_SUMMARY;
+        return Constants.SHARED_PROPERTY_PREFIX + PROPERTY_FRAGMENT_XSL_FILE_SUMMARY;
     }
-    
+
     /**
      * 
-     *{@inheritDoc}
+     * {@inheritDoc}
      */
     @Override
-    public String[] getXslFilesNames()
+    public String[] getXslFilesNames( )
     {
-    	return new String[] { getXslFormElementsFileName(  ), AppPropertiesService.getProperty( getPropertyXSLFileSummary(  ) ), };
+        return new String[] { getXslFormElementsFileName( ),
+                AppPropertiesService.getProperty( getPropertyXSLFileSummary( ) ), };
     }
-    
+
     protected String displayHeader( HttpServletRequest request )
     {
-        HtmlTemplate template = AppTemplateService.getTemplate( AppPropertiesService.getProperty( getParentForm(  )
-                                                                                                      .getName(  ) +
-                    PROPERTY_FRAGMENT_TEMPLATE_HEADER ) );
+        HtmlTemplate template = AppTemplateService.getTemplate( AppPropertiesService.getProperty( getParentForm( )
+                .getName( ) + PROPERTY_FRAGMENT_TEMPLATE_HEADER ) );
 
-        template.substitute( Constants.BOOKMARK_FORM_TITLE, this.getParentForm(  ).getTitle(  ) );
-        template.substitute( Constants.BOOKMARK_SUBFORM_TITLE, this.getTitle(  ) );
+        template.substitute( Constants.BOOKMARK_FORM_TITLE, this.getParentForm( ).getTitle( ) );
+        template.substitute( Constants.BOOKMARK_SUBFORM_TITLE, this.getTitle( ) );
 
-        HtmlTemplate templateMenu = AppTemplateService.getTemplate( AppPropertiesService.getProperty( getParentForm(  )
-                                                                                                          .getName(  ) +
-                    PROPERTY_FRAGMENT_TEMPLATE_MENU_HEADER ) );
-        template.substitute( Constants.BOOKMARK_MENU_HEADER, templateMenu.getHtml(  ) );
+        HtmlTemplate templateMenu = AppTemplateService.getTemplate( AppPropertiesService.getProperty( getParentForm( )
+                .getName( ) + PROPERTY_FRAGMENT_TEMPLATE_MENU_HEADER ) );
+        template.substitute( Constants.BOOKMARK_MENU_HEADER, templateMenu.getHtml( ) );
 
-        return template.getHtml(  );
+        return template.getHtml( );
     }
 }

@@ -53,6 +53,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang.StringUtils;
+
 
 /**
  * Subform to state the place a date of birth
@@ -71,6 +73,7 @@ public class LieuDateActeSubForm extends SubForm
     private static final String FIELD_NAME_DATE_ACTE_YEAR = "dateActeAnnee";
     private static final String FIELD_NAME_PERIODS_ACTE = "fourchetteDateActe";
     private static final String FIELD_NAME_PLACE_ACTE = "mairieActe";
+    private static final String FIELD_NAME_MOMENT_REC = "momentReconnaissance";
 
     /**
      *
@@ -238,7 +241,6 @@ public class LieuDateActeSubForm extends SubForm
             LieuType lieu = factory.createLieuType( );
 
             Field lieuField = this.getFieldFromName( request, FIELD_NAME_PLACE_ACTE );
-
             // take care when the value of the unkwnown city is modified in the
             // properties
             // the xml of definition must be modified too (think also about the
@@ -272,6 +274,13 @@ public class LieuDateActeSubForm extends SubForm
             if ( strNature != null )
             {
                 evenement.setNatureEvenement( NatureEvenementType.fromValue( strNature ) );
+            }
+
+            Field momReconnaisance = this.getFieldFromName( request, FIELD_NAME_MOMENT_REC );
+
+            if ( momReconnaisance != null && StringUtils.isNotBlank( momReconnaisance.getValue( ) ) )
+            {
+                evenement.setNatureReconnaissance( momReconnaisance.getValue( ) );
             }
 
             demandeEtatCivil.setEvenement( evenement );
