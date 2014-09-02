@@ -36,7 +36,6 @@ package fr.paris.lutece.plugins.formengine.modules.etatcivil.web;
 import fr.paris.lutece.plugins.formengine.modules.etatcivil.business.jaxb.DemandeEtatCivil;
 import fr.paris.lutece.plugins.formengine.modules.etatcivil.business.jaxb.ObjectFactory;
 import fr.paris.lutece.plugins.formengine.modules.etatcivil.service.output.EtatCivilDatabaseIdGenerator;
-//import fr.paris.lutece.plugins.formengine.modules.etatcivil.service.output.EtatCivilIdGenerator;
 import fr.paris.lutece.plugins.formengine.service.output.GeneratorFactory;
 import fr.paris.lutece.plugins.formengine.service.output.IdGenerator;
 import fr.paris.lutece.plugins.formengine.web.CaptchaSubForm;
@@ -52,7 +51,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 /**
- *
+ * 
  * ValidationSubForm
  */
 public class ValidationSubForm extends CaptchaSubForm
@@ -65,13 +64,14 @@ public class ValidationSubForm extends CaptchaSubForm
     /**
      *
      */
-    public ValidationSubForm(  )
+    public ValidationSubForm( )
     {
-        super(  );
+        super( );
     }
 
     /**
-     * @see fr.paris.lutece.plugins.formengine.web.SubForm#doAction(java.lang.String, javax.servlet.http.HttpServletRequest)
+     * @see fr.paris.lutece.plugins.formengine.web.SubForm#doAction(java.lang.String,
+     *      javax.servlet.http.HttpServletRequest)
      */
     public String doAction( String strActionName, HttpServletRequest request )
     {
@@ -79,39 +79,39 @@ public class ValidationSubForm extends CaptchaSubForm
 
         if ( strActionName == null )
         {
-            strNextSubForm = this.getName(  );
+            strNextSubForm = this.getName( );
         }
         else if ( strActionName.equals( Constants.ACTION_NAME_CONFIRM ) )
         {
             boolean bValid = doSetIdAnDate( request );
-            this.getParentForm(  ).processForm( request );
 
             if ( bValid )
             {
-                strNextSubForm = this.getNextSubForm(  ).getName(  );
-                this.getParentForm(  ).setIsAccessToSubFormAllowed( request, strNextSubForm, true );
+                this.getParentForm( ).processForm( request );
+                strNextSubForm = this.getNextSubForm( ).getName( );
+                this.getParentForm( ).setIsAccessToSubFormAllowed( request, strNextSubForm, true );
             }
             else
             {
-                strNextSubForm = this.getName(  );
+                strNextSubForm = this.getName( );
             }
         }
         else if ( strActionName.equals( Constants.ACTION_NAME_MODIFY ) )
         {
-            strNextSubForm = this.getPreviousSubForm(  ).getName(  );
+            strNextSubForm = this.getPreviousSubForm( ).getName( );
         }
         else
         {
-            strNextSubForm = this.getName(  );
+            strNextSubForm = this.getName( );
         }
 
         return strNextSubForm;
     }
 
     /**
-         * @param request
-         * @return
-         */
+     * @param request
+     * @return
+     */
     private boolean doSetIdAnDate( HttpServletRequest request )
     {
         boolean bValid = false;
@@ -125,25 +125,25 @@ public class ValidationSubForm extends CaptchaSubForm
         if ( bValid )
         {
             // create the ObjectFactory
-            ObjectFactory factory = new ObjectFactory(  );
+            ObjectFactory factory = new ObjectFactory( );
 
             // retrieve the root element in session
             DemandeEtatCivil demandeEtatCivil;
-            demandeEtatCivil = (DemandeEtatCivil) getParentForm(  ).getFormDocument( request );
+            demandeEtatCivil = (DemandeEtatCivil) getParentForm( ).getFormDocument( request );
 
             if ( demandeEtatCivil == null )
             {
-                demandeEtatCivil = factory.createDemandeEtatCivil(  );
+                demandeEtatCivil = factory.createDemandeEtatCivil( );
             }
 
             //IdGenerator idGenerator = new EtatCivilIdGenerator();
-            IdGenerator idGenerator = GeneratorFactory.getGenerator( EtatCivilDatabaseIdGenerator.class.getName(  ) );
+            IdGenerator idGenerator = GeneratorFactory.getGenerator( EtatCivilDatabaseIdGenerator.class.getName( ) );
 
             if ( idGenerator != null )
             {
-                demandeEtatCivil.setIdentifiant( idGenerator.getNewId( this.getParentForm(  ) ) );
-                demandeEtatCivil.setDateDemande( new GregorianCalendar(  ) );
-                this.getParentForm(  ).setFormDocument( request, demandeEtatCivil );
+                demandeEtatCivil.setIdentifiant( idGenerator.getNewId( this.getParentForm( ) ) );
+                demandeEtatCivil.setDateDemande( new GregorianCalendar( ) );
+                this.getParentForm( ).setFormDocument( request, demandeEtatCivil );
             }
             else
             {
@@ -162,18 +162,18 @@ public class ValidationSubForm extends CaptchaSubForm
         String strHtml = "";
 
         // get the data object in session
-        DemandeEtatCivil demandeEtatCivil = (DemandeEtatCivil) getParentForm(  ).getFormDocument( request );
+        DemandeEtatCivil demandeEtatCivil = (DemandeEtatCivil) getParentForm( ).getFormDocument( request );
 
         // set temp values to allow generation
-        demandeEtatCivil.setDateDemande( new GregorianCalendar(  ) );
+        demandeEtatCivil.setDateDemande( new GregorianCalendar( ) );
         demandeEtatCivil.setIdentifiant( "temp" );
 
         // generate xml
-        String strXml = getParentForm(  ).getXmlFormDocument( request );
+        String strXml = getParentForm( ).getXmlFormDocument( request );
 
         // generate html code via xsl transform
-        String strFileName = AppPropertiesService.getProperty( getPropertyXSLFileSummary(  ) );
-        Map<String, Object> params = new HashMap<String, Object>();
+        String strFileName = AppPropertiesService.getProperty( getPropertyXSLFileSummary( ) );
+        Map<String, Object> params = new HashMap<String, Object>( );
         strHtml = this.getHtml( strXml, strFileName, params );
 
         // reset temp values
@@ -186,40 +186,39 @@ public class ValidationSubForm extends CaptchaSubForm
     /**
      * @see fr.paris.lutece.plugins.formengine.web.SubForm#getXslFormElementsFileName()
      */
-    protected String getXslFormElementsFileName(  )
+    protected String getXslFormElementsFileName( )
     {
         return AppPropertiesService.getProperty( Constants.SHARED_PROPERTY_PREFIX + PROPERTY_FRAGMENT_XSL_FILE_FORM );
     }
 
-    private String getPropertyXSLFileSummary(  )
+    private String getPropertyXSLFileSummary( )
     {
-    	return Constants.SHARED_PROPERTY_PREFIX + PROPERTY_FRAGMENT_XSL_FILE_SUMMARY;
+        return Constants.SHARED_PROPERTY_PREFIX + PROPERTY_FRAGMENT_XSL_FILE_SUMMARY;
     }
-    
+
     /**
      * 
-     *{@inheritDoc}
+     * {@inheritDoc}
      */
     @Override
-    public String[] getXslFilesNames()
+    public String[] getXslFilesNames( )
     {
-    	return new String[] { getXslFormElementsFileName(  ), AppPropertiesService.getProperty( getPropertyXSLFileSummary(  ) ), };
+        return new String[] { getXslFormElementsFileName( ),
+                AppPropertiesService.getProperty( getPropertyXSLFileSummary( ) ), };
     }
-    
+
     protected String displayHeader( HttpServletRequest request )
     {
-        HtmlTemplate template = AppTemplateService.getTemplate( AppPropertiesService.getProperty( getParentForm(  )
-                                                                                                      .getName(  ) +
-                    PROPERTY_FRAGMENT_TEMPLATE_HEADER ) );
+        HtmlTemplate template = AppTemplateService.getTemplate( AppPropertiesService.getProperty( getParentForm( )
+                .getName( ) + PROPERTY_FRAGMENT_TEMPLATE_HEADER ) );
 
-        template.substitute( Constants.BOOKMARK_FORM_TITLE, this.getParentForm(  ).getTitle(  ) );
-        template.substitute( Constants.BOOKMARK_SUBFORM_TITLE, this.getTitle(  ) );
+        template.substitute( Constants.BOOKMARK_FORM_TITLE, this.getParentForm( ).getTitle( ) );
+        template.substitute( Constants.BOOKMARK_SUBFORM_TITLE, this.getTitle( ) );
 
-        HtmlTemplate templateMenu = AppTemplateService.getTemplate( AppPropertiesService.getProperty( getParentForm(  )
-                                                                                                          .getName(  ) +
-                    PROPERTY_FRAGMENT_TEMPLATE_MENU_HEADER ) );
-        template.substitute( Constants.BOOKMARK_MENU_HEADER, templateMenu.getHtml(  ) );
+        HtmlTemplate templateMenu = AppTemplateService.getTemplate( AppPropertiesService.getProperty( getParentForm( )
+                .getName( ) + PROPERTY_FRAGMENT_TEMPLATE_MENU_HEADER ) );
+        template.substitute( Constants.BOOKMARK_MENU_HEADER, templateMenu.getHtml( ) );
 
-        return template.getHtml(  );
+        return template.getHtml( );
     }
 }
