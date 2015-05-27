@@ -1,4 +1,4 @@
-﻿<?xml version="1.0"  encoding="UTF-8"  ?>
+<?xml version="1.0"  encoding="UTF-8"  ?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 
@@ -10,7 +10,7 @@
 
    <xsl:call-template name="mandatory-notice" />
 
-   <div class="formengine-fieldset">
+   <div class="well">
     <p class="title">Spécifier l'identité du ou des auteurs de la reconnaissance :</p>
 
      <xsl:apply-templates select="fields/field[@name='nomMere']"/>
@@ -24,17 +24,17 @@
 
 
     <xsl:if test="$showChildFields" >
-     <div class="formengine-fieldset">
+     <div class="well">
      <p class="title">Spécifier l'identité de l'enfant reconnu :</p>
      <xsl:apply-templates select="fields/field[@name='nom']"/>
      <xsl:apply-templates select="fields/field[@name='prenom']"/>
      </div>
     </xsl:if>
 
-     <fieldset class="formengine-fieldset">
-    <legend class="formengine-legend">Nombre d'actes demandés :</legend>
+     <div class="well">
+    <p class="title">Nombre d'actes demandés :</p>
      <xsl:apply-templates select="fields/field[@name='nombreActes']"/>
-    </fieldset>
+    </div>
 
 	<xsl:apply-templates select="notices" />
    <div class="formengine-steps">
