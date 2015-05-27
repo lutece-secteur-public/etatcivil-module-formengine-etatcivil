@@ -42,7 +42,7 @@
      <div class="well">
           <p class="title">Remarques :</p>  
           <ul>
-            <li>Seuls les actes enregistrés à Paris peuvent être délivrés. Si la naissance a eu lieu dans une autre commune, veuillez consulter <a target="\_blank" href="https://www.acte-naissance.fr/DemandeActe/Accueil.do">service-public.fr</a>.</li>
+            <li>Seuls les actes enregistrés à Paris peuvent être délivrés. Si l'acte concerne une autre commune, veuillez consulter <a target="\_blank" href="https://www.acte-naissance.fr/DemandeActe/Accueil.do">service-public.fr</a>.</li>
             <li>
                 <p>Les actes d'état civil conservés par les mairies d'arrondissement ne concernent que la période postérieure à 1903. Avant 1903, l'acte pourra être obtenu auprès des Archives départementales de Paris.</p>
                 <a target="\_blank" href="http://www.paris.fr/portail/Culture/Portal.lut?page_id=149">» Lien vers les archives de Paris</a>                 
