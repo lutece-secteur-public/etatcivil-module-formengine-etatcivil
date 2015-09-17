@@ -3,7 +3,7 @@
     <parent>
         <artifactId>lutece-global-pom</artifactId>
         <groupId>fr.paris.lutece.tools</groupId>
-        <version>3.0</version>
+        <version>3.0.3</version>
     </parent>
   
     <modelVersion>4.0.0</modelVersion>
@@ -78,9 +78,9 @@
     </properties>
 	
     <scm>
-        <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/applications/teleservices/trunk/module-formengine-etatcivil</connection>
-        <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/applications/teleservices/trunk/module-formengine-etatcivil</developerConnection>
-        <url>http://dev.lutece.paris.fr/viewvc/lutece/applications/teleservices/trunk/module-formengine-etatcivil</url>
+        <connection>scm:git:https://github.com/lutece-secteur-public/etatcivil-module-formengine-etatcivil.git</connection>
+        <developerConnection>scm:git:https://github.com/lutece-secteur-public/etatcivil-module-formengine-etatcivil.git</developerConnection>
+        <url>https://github.com/lutece-secteur-public/etatcivil-module-formengine-etatcivil.git</url>
     </scm>
     
 </project>
