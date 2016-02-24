@@ -261,7 +261,7 @@ public class LieuDateActeSubForm extends SubForm
                         lieuField.getValue( ).length( ) ) );
                 sbVille = sbVille.append( " )" );
 
-                lieu.setVilleDisplay( sbVille.toString( ) );
+                //lieu.setVilleDisplay( sbVille.toString( ) );
                 lieu.setVille( lieuField.getValue( ) );
             }
 
@@ -280,7 +280,7 @@ public class LieuDateActeSubForm extends SubForm
 
             if ( momReconnaisance != null && StringUtils.isNotBlank( momReconnaisance.getValue( ) ) )
             {
-                evenement.setNatureReconnaissance( momReconnaisance.getValue( ) );
+                //evenement.setNatureReconnaissance( momReconnaisance.getValue( ) );
             }
 
             demandeEtatCivil.setEvenement( evenement );
